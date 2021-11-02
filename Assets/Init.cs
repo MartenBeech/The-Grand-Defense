@@ -4,12 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Setup : MonoBehaviour
+public class Init : MonoBehaviour
 {
-    public static GameObject tower = new GameObject();
-
     private void Start()
     {
-        tower = GameObject.Find("Tower");
+        Enemy enemy = new Enemy();
+        enemy.Init();
+        Tower tower = new Tower();
+        tower.Init();
     }
 }
