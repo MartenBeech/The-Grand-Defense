@@ -34,7 +34,7 @@ public class EnemyInstance : MonoBehaviour
             float dist = Mathf.Sqrt(
                 Mathf.Pow(xEnd - xStart, 2) +
                 Mathf.Pow(zEnd - zStart, 2));
-            transform.Translate(dir.normalized * dist * (Time.deltaTime) * 0.01f);
+            transform.Translate(dir.normalized * dist * (Time.deltaTime) * 0.1f);
             distanceToTower = Mathf.Sqrt(Mathf.Pow(GetComponent<Transform>().position.x, 2) + Mathf.Pow(GetComponent<Transform>().position.z, 2));
         }
     }

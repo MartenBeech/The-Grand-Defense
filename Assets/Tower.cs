@@ -8,8 +8,8 @@ public class Tower : MonoBehaviour
 {
     public static GameObject tower;
 
-    private static int attack = 1;
-    public static int attackSpeed = 1000;
+    private static int attack = 10;
+    public static int attackSpeed = 1;
     public static int projectileSpeed = 4;
     private static int health = 10;
 

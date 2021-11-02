@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour
 
     public void Init()
     {
-        CreateEnemies(1000, Types.Normal);
+        CreateEnemies(10, Types.Normal);
     }
     public void CreateEnemies(int amount, Types type)
     {
@@ -21,7 +21,7 @@ public class Enemy : MonoBehaviour
         {
             GameObject prefab = Resources.Load<GameObject>("Assets/Enemy");
             GameObject parent = GameObject.Find("Enemies");
-            int[] pos = rng.Distance(10, 50);
+            int[] pos = rng.Distance(10, 20);
             int xPos = pos[0];
             int zPos = pos[1];
             SetStats(prefab, type);
