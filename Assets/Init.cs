@@ -8,11 +8,15 @@ public class Init : MonoBehaviour
 {
     private void Start()
     {
-        Enemy enemy = new Enemy();
-        enemy.Init();
+        Cam cam = new Cam();
+        cam.Init();
         Tower tower = new Tower();
         tower.Init();
-        Upgrade upgrade = new Upgrade();
-        upgrade.Init();
+        GameUpgrade gameUpgrade = new GameUpgrade();
+        gameUpgrade.Init();
+        MenuUpgrade menuUpgrade = new MenuUpgrade();
+        menuUpgrade.Init();
+        MainMenu mainMenu = new MainMenu();
+        mainMenu.Init();
     }
 }

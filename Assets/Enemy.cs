@@ -11,38 +11,39 @@ public class Enemy : MonoBehaviour
     Rng rng = new Rng();
     private static long spawnId = 0;
 
-    public void Init()
-    {
-        CreateEnemies(10, Types.Normal);
-    }
-    public void CreateEnemies(int amount, Types type)
+    public void CreateEnemies(int amount, Types type, int minRng, int maxRng)
     {
         for (int i = 0; i < amount; i++)
         {
             GameObject prefab = Resources.Load<GameObject>("Assets/Enemy");
             GameObject parent = GameObject.Find("Enemies");
-            int[] pos = rng.Distance(10, 20);
+            int[] pos = rng.Distance(minRng, maxRng);
             int xPos = pos[0];
             int zPos = pos[1];
             SetStats(prefab, type);
-            Instantiate(prefab, new Vector3(xPos, 0, zPos), new Quaternion(0, 0, 0, 0), parent.transform);
+            Instantiate(prefab, new Vector3(xPos, prefab.GetComponent<EnemyInstance>().diameter / 2, zPos), new Quaternion(0, 0, 0, 0), parent.transform);
             spawnId++;
         }
     }
 
     public void SetStats(GameObject prefab, Types type)
     {
-        prefab.GetComponent<EnemyInstance>().targeted = false;
-
         switch (type)
         {
             case Types.Normal:
                 prefab.name = $"Normal{spawnId}";
                 prefab.GetComponent<EnemyInstance>().diameter = 1;
-                prefab.GetComponent<EnemyInstance>().health = 10;
+                prefab.GetComponent<EnemyInstance>().health = 100;
                 prefab.GetComponent<EnemyInstance>().attack = 1;
+                prefab.GetComponent<EnemyInstance>().bounty = 1;
+                prefab.GetComponent<EnemyInstance>().speed = 0.1f;
                 break;
         }
+
+        prefab.GetComponent<EnemyInstance>().targeted = false;
+        float diameter = prefab.GetComponent<EnemyInstance>().diameter;
+        prefab.transform.localScale = new Vector3(diameter, diameter, diameter);
+
     }
 
     public Transform GetNearestUntargetedEnemy()

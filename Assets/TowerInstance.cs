@@ -17,16 +17,19 @@ public class TowerInstance : MonoBehaviour
 
     private void Update()
     {
-        if (attackInterval > 0)
+        if (Game.inProgress)
         {
-            attackInterval -= Time.deltaTime;
-        }
-        if (attackInterval <= 0)
-        {
-            Tower tower = new Tower();
-            if (tower.Attack())
+            if (attackInterval > 0)
             {
-                attackInterval = attackIntervalMax;
+                attackInterval -= Time.deltaTime;
+            }
+            if (attackInterval <= 0)
+            {
+                Tower tower = new Tower();
+                if (tower.Attack())
+                {
+                    attackInterval = attackIntervalMax;
+                }
             }
         }
     }

@@ -14,9 +14,12 @@ public class EnemyInstance : MonoBehaviour
     public float diameter;
     public float distanceToTower;
 
+    public int bounty;
+    public bool targeted;
+
     public int attack;
     public int health;
-    public bool targeted;
+    public float speed;
 
     private void Awake()
     {
@@ -29,20 +32,23 @@ public class EnemyInstance : MonoBehaviour
 
     void Update()
     {
-        if (distanceToTower > diameter)
+        if (Game.inProgress)
         {
-            Vector3 dir = new Vector3(xEnd, 0, zEnd) - new Vector3(xStart, 0, zStart);
-            float dist = Mathf.Sqrt(
-                Mathf.Pow(xEnd - xStart, 2) +
-                Mathf.Pow(zEnd - zStart, 2));
-            transform.Translate(dir.normalized * dist * (Time.deltaTime) * 0.1f);
-            distanceToTower = Mathf.Sqrt(Mathf.Pow(GetComponent<Transform>().position.x, 2) + Mathf.Pow(GetComponent<Transform>().position.z, 2));
-            
-            if (distanceToTower <= diameter)
+            if (distanceToTower > (diameter / 2) + 0.5)
             {
-                Damage damage = new Damage();
-                damage.DealDamageToTower(attack);
-                Destroy(gameObject);
+                Vector3 dir = new Vector3(xEnd, 0, zEnd) - new Vector3(xStart, 0, zStart);
+                float dist = Mathf.Sqrt(
+                    Mathf.Pow(xEnd - xStart, 2) +
+                    Mathf.Pow(zEnd - zStart, 2));
+                transform.Translate(dir.normalized * dist * (Time.deltaTime) * speed);
+                distanceToTower = Mathf.Sqrt(Mathf.Pow(GetComponent<Transform>().position.x, 2) + Mathf.Pow(GetComponent<Transform>().position.z, 2));
+            
+                if (distanceToTower <= (diameter / 2) + 0.5)
+                {
+                    Damage damage = new Damage();
+                    damage.DealDamageToTower(attack);
+                    Destroy(gameObject);
+                }
             }
         }
     }

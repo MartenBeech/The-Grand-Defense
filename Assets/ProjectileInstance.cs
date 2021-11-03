@@ -7,30 +7,43 @@ using UnityEngine.UI;
 public class ProjectileInstance : MonoBehaviour
 {
     private float xStart;
+    private float yStart;
     private float zStart;
     public Transform target;
-    private float count = 1f / Tower.projectileSpeed;
+    private float count;
 
     private void Awake()
     {
-        xStart = 0;
-        zStart = 0;
+        xStart = transform.position.x;
+        yStart = transform.position.y;
+        zStart = transform.position.z;
+        count = 1f / Tower.projectileSpeed;
     }
 
     void Update()
     {
-        Vector3 dir = new Vector3(target.position.x, 0, target.position.z) - new Vector3(xStart, 0, zStart);
-        float dist = Mathf.Sqrt(
-            Mathf.Pow(target.position.x - xStart, 2) +
-            Mathf.Pow(target.position.z - zStart, 2));
-        transform.Translate(dir.normalized * dist * (Time.deltaTime) * Tower.projectileSpeed);
-        count -= Time.deltaTime;
-
-        if (Mathf.Abs(GetComponent<Transform>().position.x + GetComponent<Transform>().position.z) > Mathf.Abs(target.position.x + target.position.z) || count <= 0)
+        if (Game.inProgress)
         {
-            Damage damage = new Damage();
-            damage.DealDamageToEnemy(target);
-            Destroy(gameObject);
+            if (target == null)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                Vector3 dir = new Vector3(target.position.x, target.position.y, target.position.z) - new Vector3(xStart, yStart, zStart);
+                float dist = Mathf.Sqrt(
+                    Mathf.Pow(target.position.x - xStart, 2) +
+                    Mathf.Pow(target.position.z - zStart, 2));
+                transform.Translate(dir.normalized * dist * (Time.deltaTime) * Tower.projectileSpeed);
+                count -= Time.deltaTime;
+
+                if (Mathf.Abs(GetComponent<Transform>().position.x + GetComponent<Transform>().position.z) > Mathf.Abs(target.position.x + target.position.z) || count <= 0)
+                {
+                    Damage damage = new Damage();
+                    damage.DealDamageToEnemy(target);
+                    Destroy(gameObject);
+                }
+            }
         }
     }
 }
