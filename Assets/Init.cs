@@ -12,5 +12,7 @@ public class Init : MonoBehaviour
         enemy.Init();
         Tower tower = new Tower();
         tower.Init();
+        Upgrade upgrade = new Upgrade();
+        upgrade.Init();
     }
 }

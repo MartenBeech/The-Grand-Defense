@@ -8,10 +8,11 @@ public class Tower : MonoBehaviour
 {
     public static GameObject tower;
 
-    private static int attack = 10;
-    public static int attackSpeed = 1;
+    public static int attack = 10;
+    public static int attackSpeed = 10;
     public static int projectileSpeed = 4;
-    private static int health = 10;
+    public static float range = 10;
+    public static int health = 10;
 
     public void Init()
     {
@@ -39,15 +40,5 @@ public class Tower : MonoBehaviour
             return true;
         }
         return false;
-    }
-
-    public void DealDamage(Transform target)
-    {
-        target.gameObject.GetComponent<EnemyInstance>().health -= attack;
-        target.gameObject.GetComponent<EnemyInstance>().targeted = false;
-        if (target.gameObject.GetComponent<EnemyInstance>().health <= 0)
-        {
-            Destroy(target.gameObject);
-        }
     }
 }

@@ -28,8 +28,8 @@ public class ProjectileInstance : MonoBehaviour
 
         if (Mathf.Abs(GetComponent<Transform>().position.x + GetComponent<Transform>().position.z) > Mathf.Abs(target.position.x + target.position.z) || count <= 0)
         {
-            Tower tower = new Tower();
-            tower.DealDamage(target);
+            Damage damage = new Damage();
+            damage.DealDamageToEnemy(target);
             Destroy(gameObject);
         }
     }

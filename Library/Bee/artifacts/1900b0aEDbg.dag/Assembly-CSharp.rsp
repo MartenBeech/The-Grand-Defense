@@ -325,6 +325,7 @@
 "Assets/Rng.cs"
 "Assets/Tower.cs"
 "Assets/TowerInstance.cs"
+"Assets/Upgrade.cs"
 -langversion:8.0
 
 /deterministic

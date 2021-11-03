@@ -32,13 +32,15 @@ public class Enemy : MonoBehaviour
 
     public void SetStats(GameObject prefab, Types type)
     {
-        switch(type)
+        prefab.GetComponent<EnemyInstance>().targeted = false;
+
+        switch (type)
         {
             case Types.Normal:
                 prefab.name = $"Normal{spawnId}";
+                prefab.GetComponent<EnemyInstance>().diameter = 1;
                 prefab.GetComponent<EnemyInstance>().health = 10;
                 prefab.GetComponent<EnemyInstance>().attack = 1;
-                prefab.GetComponent<EnemyInstance>().targeted = false;
                 break;
         }
     }
@@ -54,10 +56,14 @@ public class Enemy : MonoBehaviour
             Transform child = parent.GetChild(i);
             float distance = child.gameObject.GetComponent<EnemyInstance>().distanceToTower;
             bool targeted = child.gameObject.GetComponent<EnemyInstance>().targeted;
-            if (!targeted && (distance < lowestDistance || lowestDistance == 0))
+            if (!targeted && distance <= Tower.range)
             {
-                lowestDistance = distance;
-                target = child;
+                if (distance < lowestDistance || lowestDistance == 0)
+                {
+                    lowestDistance = distance;
+                    target = child;
+                }
+                
             }
         }
         return target;

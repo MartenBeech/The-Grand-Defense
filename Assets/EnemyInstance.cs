@@ -11,6 +11,7 @@ public class EnemyInstance : MonoBehaviour
     private float xEnd;
     private float zEnd;
 
+    public float diameter;
     public float distanceToTower;
 
     public int attack;
@@ -28,7 +29,7 @@ public class EnemyInstance : MonoBehaviour
 
     void Update()
     {
-        if (distanceToTower > 1)
+        if (distanceToTower > diameter)
         {
             Vector3 dir = new Vector3(xEnd, 0, zEnd) - new Vector3(xStart, 0, zStart);
             float dist = Mathf.Sqrt(
@@ -36,6 +37,13 @@ public class EnemyInstance : MonoBehaviour
                 Mathf.Pow(zEnd - zStart, 2));
             transform.Translate(dir.normalized * dist * (Time.deltaTime) * 0.1f);
             distanceToTower = Mathf.Sqrt(Mathf.Pow(GetComponent<Transform>().position.x, 2) + Mathf.Pow(GetComponent<Transform>().position.z, 2));
+            
+            if (distanceToTower <= diameter)
+            {
+                Damage damage = new Damage();
+                damage.DealDamageToTower(attack);
+                Destroy(gameObject);
+            }
         }
     }
 }
