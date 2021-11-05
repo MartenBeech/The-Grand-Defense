@@ -14,11 +14,11 @@ public class EnemyInstance : MonoBehaviour
     public float diameter;
     public float distanceToTower;
 
-    public int bounty;
+    public float[] bounty = new float[2];
     public bool targeted;
 
-    public int attack;
-    public int health;
+    public float attack;
+    public float health;
     public float speed;
 
     private void Awake()

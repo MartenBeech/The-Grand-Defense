@@ -49,37 +49,54 @@ public class Game : MonoBehaviour
         Enemy enemy = new Enemy();
         switch (level)
         {
-            case 1:
+            //case 1:
+            //    switch (wave)
+            //    {
+            //        case 0:
+            //            enemy.CreateEnemies(1, Enemy.Types.Normal, 5, 10);
+            //            break;
+            //        case 1:
+            //            enemy.CreateEnemies(1, Enemy.Types.Normal, 5, 10);
+            //            break;
+            //        case 2:
+            //            enemy.CreateEnemies(1, Enemy.Types.Normal, 5, 10);
+            //            break;
+            //        case 3:
+            //            enemy.CreateEnemies(1, Enemy.Types.Normal, 5, 10);
+            //            break;
+            //    }
+            //    break;
+            //case 2:
+            //    switch (wave)
+            //    {
+            //        case 0:
+            //            enemy.CreateEnemies(2, Enemy.Types.Normal, 5, 10);
+            //            break;
+            //        case 1:
+            //            enemy.CreateEnemies(2, Enemy.Types.Normal, 5, 10);
+            //            break;
+            //        case 2:
+            //            enemy.CreateEnemies(2, Enemy.Types.Normal, 5, 10);
+            //            break;
+            //        case 3:
+            //            enemy.CreateEnemies(2, Enemy.Types.Normal, 5, 10);
+            //            break;
+            //    }
+            //    break;
+            default:
                 switch (wave)
                 {
                     case 0:
-                        enemy.CreateEnemies(1, Enemy.Types.Normal, (int)Tower.range, (int)Tower.range + 10);
+                        enemy.CreateEnemies(10, Enemy.Types.Normal, 5, 10);
                         break;
                     case 1:
-                        enemy.CreateEnemies(1, Enemy.Types.Normal, (int)Tower.range, (int)Tower.range + 10);
+                        enemy.CreateEnemies(10, Enemy.Types.Normal, 5, 10);
                         break;
                     case 2:
-                        enemy.CreateEnemies(1, Enemy.Types.Normal, (int)Tower.range, (int)Tower.range + 10);
+                        enemy.CreateEnemies(10, Enemy.Types.Normal, 5, 10);
                         break;
                     case 3:
-                        enemy.CreateEnemies(1, Enemy.Types.Normal, (int)Tower.range, (int)Tower.range + 10);
-                        break;
-                }
-                break;
-            case 2:
-                switch (wave)
-                {
-                    case 0:
-                        enemy.CreateEnemies(2, Enemy.Types.Normal, (int)Tower.range, (int)Tower.range + 10);
-                        break;
-                    case 1:
-                        enemy.CreateEnemies(2, Enemy.Types.Normal, (int)Tower.range, (int)Tower.range + 10);
-                        break;
-                    case 2:
-                        enemy.CreateEnemies(2, Enemy.Types.Normal, (int)Tower.range, (int)Tower.range + 10);
-                        break;
-                    case 3:
-                        enemy.CreateEnemies(2, Enemy.Types.Normal, (int)Tower.range, (int)Tower.range + 10);
+                        enemy.CreateEnemies(10, Enemy.Types.Normal, 5, 10);
                         break;
                 }
                 break;

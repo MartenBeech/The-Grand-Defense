@@ -22,7 +22,7 @@ public class MainMenu : MonoBehaviour
     {
         mainMenuCanvas.GetComponent<Canvas>().enabled = false;
         inGameCanvas.GetComponent<Canvas>().enabled = true;
-        Money.gold = 0;
+        Money.gold = new float[] { 0, 0 };
         Game.level = 0;
         Game.inProgress = true;
         Game gameLevel = new Game();

@@ -33,9 +33,9 @@ public class Enemy : MonoBehaviour
             case Types.Normal:
                 prefab.name = $"Normal{spawnId}";
                 prefab.GetComponent<EnemyInstance>().diameter = 1;
-                prefab.GetComponent<EnemyInstance>().health = 100;
+                prefab.GetComponent<EnemyInstance>().health = 10;
                 prefab.GetComponent<EnemyInstance>().attack = 1;
-                prefab.GetComponent<EnemyInstance>().bounty = 1;
+                prefab.GetComponent<EnemyInstance>().bounty = new float[] { 11, 0 };
                 prefab.GetComponent<EnemyInstance>().speed = 0.1f;
                 break;
         }

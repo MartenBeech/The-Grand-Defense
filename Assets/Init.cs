@@ -18,5 +18,7 @@ public class Init : MonoBehaviour
         menuUpgrade.Init();
         MainMenu mainMenu = new MainMenu();
         mainMenu.Init();
+        Money money = new Money();
+        money.Init();
     }
 }

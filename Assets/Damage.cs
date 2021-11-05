@@ -8,7 +8,7 @@ public class Damage : MonoBehaviour
 {
     public void DealDamageToEnemy(Transform target)
     {
-        target.gameObject.GetComponent<EnemyInstance>().health -= Tower.attack;
+        target.gameObject.GetComponent<EnemyInstance>().health -= Tower.attackDamage;
         target.gameObject.GetComponent<EnemyInstance>().targeted = false;
         if (target.gameObject.GetComponent<EnemyInstance>().health <= 0)
         {
@@ -16,7 +16,7 @@ public class Damage : MonoBehaviour
         }
     }
 
-    public void DealDamageToTower(int i)
+    public void DealDamageToTower(float i)
     {
         Tower.health -= i;
         if (Tower.health <= 0)

@@ -9,11 +9,34 @@ public class Tower : MonoBehaviour
     public static GameObject tower;
     public static GameObject rangeIndicator;
 
-    public static int attack;
-    public static int attackSpeed;
-    public static int projectileSpeed;
+    public static float attackDamage;
+    public static float attackSpeed;
     public static float range;
-    public static int health;
+    public static float projectileSpeed;
+    public static float criticalChance;
+    public static float criticalDamage;
+    public static float multishot;
+    public static float damagePerKill;
+
+    public static float health;
+    public static float regeneration;
+    public static float percentageResistance;
+    public static float flatResistance;
+    public static float shieldBlock;
+    public static float slowAura;
+    public static float lifeSteal;
+    public static float healthPerKill;
+
+    public static float goldPerLevel;
+    public static float crystalsPerLevel;
+    public static float bonusGold;
+    public static float bonusCrystals;
+    public static float attackUpgrade;
+    public static float healthUpgrade;
+    public static float utilityUpgrade;
+    public static float goldInterest;
+
+
 
     public void Init()
     {
@@ -25,10 +48,11 @@ public class Tower : MonoBehaviour
 
     public void SetStats()
     {
-        attack = 1;
-        attackSpeed = 1;
+        attackDamage = 10;
+        attackSpeed = 100;
+        range = 5;
         projectileSpeed = 4;
-        range = 20;
+        criticalChance = 0;
         health = 10;
     }
 
@@ -60,7 +84,7 @@ public class Tower : MonoBehaviour
         tower.transform.localScale = new Vector3(1, range / 10, 1);
         tower.transform.position = new Vector3(0, tower.transform.localScale.y, 0);
         rangeIndicator.transform.localScale = new Vector3(range * 2, 0.1f, range * 2);
-        float camDistance = (range);
-        Cam.mainCamera.transform.position = new Vector3(camDistance, camDistance, -camDistance);
+        Cam cam = new Cam();
+        cam.SetCamFromRange(range);
     }
 }
