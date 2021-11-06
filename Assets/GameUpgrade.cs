@@ -9,8 +9,8 @@ public class GameUpgrade : MonoBehaviour
     public const int MENU_SIZE = 8;
 
     public enum Menu { Attack, Defense, Utility, TopSecret }
-    public static string[] attackTitles = new string[8] { "Attack Damage", "Attack Speed", "Range", "Projectile Speed", "Critical Chance", "Critical Damage", "Multishot", "Damage Per Kill" };
-    public static string[] defenseTitles = new string[8] { "Health", "Regeneration", "Resistance", "Flat block", "Divine Shield", "Slow Aura", "Life steal", "Health Per Kill" };
+    public static string[] attackTitles = new string[8] { "Attack Damage", "Attack Speed", "Range", "Projectile Speed", "Critical Chance", "Critical Damage", "Multishot Chance", "Damage Per Kill" };
+    public static string[] defenseTitles = new string[8] { "Health", "Regeneration", "Percentage Block", "Flat Block", "Divine Shield", "Slow Aura", "Life steal", "Health Per Kill" };
     public static string[] utilityTitles = new string[8] { "Gold Per Level", "Crystals Per Level", "Bonus Gold", "Bonus Crystals", "Attack Upgrade", "Health Upgrade", "Utility Upgrade", "Gold Interest" };
     public static string[] topSecretTitles = new string[8] { "TBD", "TBD", "TBD", "TBD", "TBD", "TBD", "TBD", "TBD" };
 
@@ -45,23 +45,23 @@ public class GameUpgrade : MonoBehaviour
     {
         if (menu == Menu.Attack.ToString())
         {
-            SetUpgrade(attackUnlocked, attackTitles, attackGoldCost);
+            SetUpgradeButtons(attackUnlocked, attackTitles);
         }
         else if (menu == Menu.Defense.ToString())
         {
-            SetUpgrade(defenseUnlocked, defenseTitles, defenseGoldCost);
+            SetUpgradeButtons(defenseUnlocked, defenseTitles);
         }
         else if (menu == Menu.Utility.ToString())
         {
-            SetUpgrade(utilityUnlocked, utilityTitles, utilityGoldCost);
+            SetUpgradeButtons(utilityUnlocked, utilityTitles);
         }
         else if (menu == Menu.TopSecret.ToString())
         {
-            SetUpgrade(topSecretUnlocked, topSecretTitles, topSecretGoldCost);
+            SetUpgradeButtons(topSecretUnlocked, topSecretTitles);
         }
     }
 
-    public void SetUpgrade(bool[] unlocked, string[] title, float[,] cost)
+    public void SetUpgradeButtons(bool[] unlocked, string[] title)
     {
         for (int i = 0; i < MENU_SIZE; i++)
         {
@@ -69,7 +69,7 @@ public class GameUpgrade : MonoBehaviour
             {
                 upgrades[i].GetComponent<Image>().enabled = true;
                 upgrades[i].GetComponent<Button>().enabled = true;
-                upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]}\n{cost[i, 0].ToString("#.00")} e{cost[i, 1]}";
+                upgrades[i].GetComponentInChildren<Text>().text = GetUpgradeText(title, i);
             }
             else if (!unlocked[i])
             {
@@ -86,5 +86,92 @@ public class GameUpgrade : MonoBehaviour
         {
             unlocked[i] = true;
         }
+    }
+
+    public string GetUpgradeText(string[] title, int i)
+    {
+        string goldColor = "#8D9600";
+        switch (title[i])
+        {
+            case "Attack Damage":
+                return $"{title[i]}\n{Tower.attackDamage}\n<color={goldColor}>{attackGoldCost[i, 0]:#.00} e{attackGoldCost[i, 1]}</color>";
+
+            case "Attack Speed":
+                return $"{title[i]}\n{Tower.attackSpeed} shots/s\n<color={goldColor}>{attackGoldCost[i, 0]:#.00} e{attackGoldCost[i, 1]}</color>";
+
+            case "Range":
+                return $"{title[i]}\n{Tower.range}\n<color={goldColor}>{attackGoldCost[i, 0]:#.00} e{attackGoldCost[i, 1]}</color>";
+
+            case "Projectile Speed":
+                return $"{title[i]}\n{Tower.projectileSpeed}\n<color={goldColor}>{attackGoldCost[i, 0]:#.00} e{attackGoldCost[i, 1]}</color>";
+
+            case "Critical Chance":
+                return $"{title[i]}\n{Tower.criticalChance} %\n<color={goldColor}>{attackGoldCost[i, 0]:#.00} e{attackGoldCost[i, 1]}</color>";
+
+            case "Critical Damage":
+                return $"{title[i]}\n{Tower.criticalDamage} %\n<color={goldColor}>{attackGoldCost[i, 0]:#.00} e{attackGoldCost[i, 1]}</color>";
+
+            case "Multishot Chance":
+                return $"{title[i]}\n{Tower.multishotChance} %\n<color={goldColor}>{attackGoldCost[i, 0]:#.00} e{attackGoldCost[i, 1]}</color>";
+
+            case "Damage Per Kill":
+                return $"{title[i]}\n{Tower.damagePerKill} %\n<color={goldColor}>{attackGoldCost[i, 0]:#.00} e{attackGoldCost[i, 1]}</color>";
+
+
+            case "Health":
+                return $"{title[i]}\n{Tower.health}\n<color={goldColor}>{defenseGoldCost[i, 0]:#.00} e{defenseGoldCost[i, 1]}</color>";
+
+            case "Regeneration":
+                return $"{title[i]}\n{Tower.regeneration} hp/s\n<color={goldColor}>{defenseGoldCost[i, 0]:#.00} e{defenseGoldCost[i, 1]}</color>";
+
+            case "Percentage Block":
+                return $"{title[i]}\n{Tower.percentageBlock} %\n<color={goldColor}>{defenseGoldCost[i, 0]:#.00} e{defenseGoldCost[i, 1]}</color>";
+
+            case "Flat Block":
+                return $"{title[i]}\n{Tower.flatBlock}\n<color={goldColor}>{defenseGoldCost[i, 0]:#.00} e{defenseGoldCost[i, 1]}</color>";
+
+            case "Divine Shield":
+                return $"{title[i]}\n{Tower.divineShield} cooldown\n<color={goldColor}>{defenseGoldCost[i, 0]:#.00} e{defenseGoldCost[i, 1]}</color>";
+
+            case "Slow Aura":
+                return $"{title[i]}\n{Tower.slowAura} %\n<color={goldColor}>{defenseGoldCost[i, 0]:#.00} e{defenseGoldCost[i, 1]}</color>";
+
+            case "Life steal":
+                return $"{title[i]}\n{Tower.lifeSteal} %\n<color={goldColor}>{defenseGoldCost[i, 0]:#.00} e{defenseGoldCost[i, 1]}</color>";
+
+            case "Health Per Kill":
+                return $"{title[i]}\n{Tower.healthPerKill} %\n<color={goldColor}>{defenseGoldCost[i, 0]:#.00} e{defenseGoldCost[i, 1]}</color>";
+
+
+            case "Gold Per Level":
+                return $"{title[i]}\n{Tower.goldPerLevel}\n<color={goldColor}>{utilityGoldCost[i, 0]:#.00} e{utilityGoldCost[i, 1]}</color>";
+
+            case "Crystals Per Level":
+                return $"{title[i]}\n{Tower.crystalsPerLevel}\n<color={goldColor}>{utilityGoldCost[i, 0]:#.00} e{utilityGoldCost[i, 1]}</color>";
+
+            case "Bonus Gold":
+                return $"{title[i]}\n{Tower.bonusGold} %\n<color={goldColor}>{utilityGoldCost[i, 0]:#.00} e{utilityGoldCost[i, 1]}</color>";
+
+            case "Bonus Crystals":
+                return $"{title[i]}\n{Tower.bonusCrystals} %\n<color={goldColor}>{utilityGoldCost[i, 0]:#.00} e{utilityGoldCost[i, 1]}</color>";
+
+            case "Attack Upgrade":
+                return $"{title[i]}\n{Tower.attackUpgrade} %\n<color={goldColor}>{utilityGoldCost[i, 0]:#.00} e{utilityGoldCost[i, 1]}</color>";
+
+            case "Health Upgrade":
+                return $"{title[i]}\n{Tower.healthUpgrade} %\n<color={goldColor}>{utilityGoldCost[i, 0]:#.00} e{utilityGoldCost[i, 1]}</color>";
+
+            case "Utility Upgrade":
+                return $"{title[i]}\n{Tower.utilityUpgrade} %\n<color={goldColor}>{utilityGoldCost[i, 0]:#.00} e{utilityGoldCost[i, 1]}</color>";
+
+            case "Gold Interest":
+                return $"{title[i]}\n{Tower.goldInterest} %\n<color={goldColor}>{utilityGoldCost[i, 0]:#.00} e{utilityGoldCost[i, 1]}</color>";
+        }
+        return "";
+    }
+
+    public void LevelUpUpgrade()
+    {
+
     }
 }

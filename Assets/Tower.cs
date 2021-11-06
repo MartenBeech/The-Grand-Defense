@@ -15,14 +15,14 @@ public class Tower : MonoBehaviour
     public static float projectileSpeed;
     public static float criticalChance;
     public static float criticalDamage;
-    public static float multishot;
+    public static float multishotChance;
     public static float damagePerKill;
 
     public static float health;
     public static float regeneration;
-    public static float percentageResistance;
-    public static float flatResistance;
-    public static float shieldBlock;
+    public static float percentageBlock;
+    public static float flatBlock;
+    public static float divineShield;
     public static float slowAura;
     public static float lifeSteal;
     public static float healthPerKill;

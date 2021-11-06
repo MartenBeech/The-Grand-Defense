@@ -37,27 +37,41 @@ public class Money : MonoBehaviour
     public void GainCrystals(float[] amount)
     {
         crystals[1] += amount[1];
-        crystals[0] += amount[0];
+        crystals[0] += amount[0] / Mathf.Pow(10, crystals[1] - amount[1]);
         if (crystals[0] >= 10)
         {
             crystals[0] /= 10;
             crystals[1] += 1;
         }
-        inGameCrystals.GetComponentInChildren<Text>().text = $"${crystals}";
-        MenuCrystals.GetComponentInChildren<Text>().text = $"${crystals}";
+        DisplayCrystals();
     }
 
-    //public bool SpendGold(int amount)
-    //{
-    //    if (gold >= amount)
-    //    {
-    //        gold -= amount;
-    //        inGameGold.GetComponentInChildren<Text>().text = $"${gold}";
-    //        MenuGold.GetComponentInChildren<Text>().text = $"${gold}";
-    //        return true;
-    //    }
-    //    return false;
-    //}
+    public bool SpendGold(float[] amount)
+    {
+        if (gold[1] > amount[1])
+        {
+            gold[0] -= amount[0] / Mathf.Pow(10, gold[1] - amount[1]);
+            while (gold[0] < 1)
+            {
+                gold[0] *= 10;
+                gold[1] -= 1;
+            }
+            DisplayGold();
+            return true;
+        }
+        else if (gold[1] == amount[1] && gold[0] >= amount[0])
+        {
+            gold[0] -= amount[0];
+            while (gold[0] < 1)
+            {
+                gold[0] *= 10;
+                gold[1] -= 1;
+            }
+            DisplayGold();
+            return true;
+        }
+        return false;
+    }
 
     //public bool SpendCrystals(int amount)
     //{
@@ -75,6 +89,13 @@ public class Money : MonoBehaviour
     {
         Mathf.Round(gold[1]);
         inGameGold.GetComponentInChildren<Text>().text = $"${gold[0].ToString("#.00")} e{gold[1]}";
-        MenuGold.GetComponentInChildren<Text>().text = $"${gold[0]} e{gold[1]}";
+        MenuGold.GetComponentInChildren<Text>().text = $"${gold[0].ToString("#.00")} e{gold[1]}";
+    }
+
+    public void DisplayCrystals()
+    {
+        Mathf.Round(crystals[1]);
+        inGameGold.GetComponentInChildren<Text>().text = $"${crystals[0].ToString("#.00")} e{crystals[1]}";
+        MenuGold.GetComponentInChildren<Text>().text = $"${crystals[0].ToString("#.00")} e{crystals[1]}";
     }
 }
