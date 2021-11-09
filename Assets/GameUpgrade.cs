@@ -9,7 +9,8 @@ public class GameUpgrade : MonoBehaviour
     public const int MENU_SIZE = 8;
 
     public enum Menu { Attack, Defense, Utility, TopSecret }
-    public static string[] attackTitles = new string[8] { "Attack Damage", "Attack Speed", "Range", "Projectile Speed", "Critical Chance", "Critical Damage", "Multishot Chance", "Damage Per Kill" };
+    public Menu currentMenu = Menu.Attack;
+    public static string[] attackTitles = new string[8] { "Attack Damage", "Attack Speed", "Range", "Projectile Speed", "Critical Chance", "Critical Damage", "Multishot", "Damage Per Kill" };
     public static string[] defenseTitles = new string[8] { "Health", "Regeneration", "Percentage Block", "Flat Block", "Divine Shield", "Slow Aura", "Life steal", "Health Per Kill" };
     public static string[] utilityTitles = new string[8] { "Gold Per Level", "Crystals Per Level", "Bonus Gold", "Bonus Crystals", "Attack Upgrade", "Health Upgrade", "Utility Upgrade", "Gold Interest" };
     public static string[] topSecretTitles = new string[8] { "TBD", "TBD", "TBD", "TBD", "TBD", "TBD", "TBD", "TBD" };
@@ -18,6 +19,16 @@ public class GameUpgrade : MonoBehaviour
     public static float[,] defenseGoldCost = new float[8, 2] { { 1, 1 }, { 1, 1 }, { 1, 2 }, { 1, 2 }, { 5, 3 }, { 5, 3 }, { 1, 10 }, { 1, 50 } };
     public static float[,] utilityGoldCost = new float[8, 2] { { 2, 1 }, { 2, 1 }, { 1, 3 }, { 1, 3 }, { 1, 7 }, { 1, 7 }, { 1, 10 }, { 1, 50 } };
     public static float[,] topSecretGoldCost = new float[8, 2] { { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }};
+
+    public static float[,] attackGoldCostDefault = new float[8, 2] { { 1, 1 }, { 1, 1 }, { 1, 2 }, { 1, 2 }, { 5, 3 }, { 5, 3 }, { 1, 10 }, { 1, 50 } };
+    public static float[,] defenseGoldCostDefault = new float[8, 2] { { 1, 1 }, { 1, 1 }, { 1, 2 }, { 1, 2 }, { 5, 3 }, { 5, 3 }, { 1, 10 }, { 1, 50 } };
+    public static float[,] utilityGoldCostDefault = new float[8, 2] { { 2, 1 }, { 2, 1 }, { 1, 3 }, { 1, 3 }, { 1, 7 }, { 1, 7 }, { 1, 10 }, { 1, 50 } };
+    public static float[,] topSecretGoldCostDefault = new float[8, 2] { { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 } };
+
+    public static float[,] attackLevels = new float[8, 2] { { 0, 999 }, { 0, 100 }, { 0, 100 }, { 0, 100 }, { 0, 50 }, { 0, 50 }, { 0, 9 }, { 0, 10 } };
+    public static float[,] defenseLevels = new float[8, 2] { { 0, 999 }, { 0, 999 }, { 0, 99 }, { 0, 100 }, { 0, 19 }, { 0, 25 }, { 0, 10 }, { 0, 10 } };
+    public static float[,] utilityLevels = new float[8, 2] { { 0, 100 }, { 0, 100 }, { 0, 100 }, { 0, 100 }, { 0, 50 }, { 0, 50 }, { 0, 50 }, { 0, 10 } };
+    public static float[,] topSecretLevels = new float[8, 2] { { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 } };
 
     public static GameObject[] upgrades = new GameObject[MENU_SIZE];
 
@@ -69,7 +80,7 @@ public class GameUpgrade : MonoBehaviour
             {
                 upgrades[i].GetComponent<Image>().enabled = true;
                 upgrades[i].GetComponent<Button>().enabled = true;
-                upgrades[i].GetComponentInChildren<Text>().text = GetUpgradeText(title, i);
+                DisplayUpgradeText(title, i);
             }
             else if (!unlocked[i])
             {
@@ -88,90 +99,145 @@ public class GameUpgrade : MonoBehaviour
         }
     }
 
-    public string GetUpgradeText(string[] title, int i)
+    public void DisplayUpgradeText(string[] title, int i)
     {
         string goldColor = "#8D9600";
         switch (title[i])
         {
             case "Attack Damage":
-                return $"{title[i]}\n{Tower.attackDamage}\n<color={goldColor}>{attackGoldCost[i, 0]:#.00} e{attackGoldCost[i, 1]}</color>";
+                upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]}\n{Tower.attackDamage:#.00}\n<color={goldColor}>{attackGoldCost[i, 0]:#.00} e{attackGoldCost[i, 1]}</color>";
+                break;
 
             case "Attack Speed":
-                return $"{title[i]}\n{Tower.attackSpeed} shots/s\n<color={goldColor}>{attackGoldCost[i, 0]:#.00} e{attackGoldCost[i, 1]}</color>";
+                upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]}\n{Tower.attackSpeed:#.00} shots/s\n<color={goldColor}>{attackGoldCost[i, 0]:#.00} e{attackGoldCost[i, 1]}</color>";
+                break;
 
             case "Range":
-                return $"{title[i]}\n{Tower.range}\n<color={goldColor}>{attackGoldCost[i, 0]:#.00} e{attackGoldCost[i, 1]}</color>";
+                upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]}\n{Tower.range:#.00}\n<color={goldColor}>{attackGoldCost[i, 0]:#.00} e{attackGoldCost[i, 1]}</color>";
+                break;
 
             case "Projectile Speed":
-                return $"{title[i]}\n{Tower.projectileSpeed}\n<color={goldColor}>{attackGoldCost[i, 0]:#.00} e{attackGoldCost[i, 1]}</color>";
+                upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]}\n{Tower.projectileSpeed:#.00}\n<color={goldColor}>{attackGoldCost[i, 0]:#.00} e{attackGoldCost[i, 1]}</color>";
+                break;
 
             case "Critical Chance":
-                return $"{title[i]}\n{Tower.criticalChance} %\n<color={goldColor}>{attackGoldCost[i, 0]:#.00} e{attackGoldCost[i, 1]}</color>";
+                upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]}\n{Tower.criticalChance:#.00} %\n<color={goldColor}>{attackGoldCost[i, 0]:#.00} e{attackGoldCost[i, 1]}</color>";
+                break;
 
             case "Critical Damage":
-                return $"{title[i]}\n{Tower.criticalDamage} %\n<color={goldColor}>{attackGoldCost[i, 0]:#.00} e{attackGoldCost[i, 1]}</color>";
+                upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]}\n{Tower.criticalDamage:#.00} %\n<color={goldColor}>{attackGoldCost[i, 0]:#.00} e{attackGoldCost[i, 1]}</color>";
+                break;
 
-            case "Multishot Chance":
-                return $"{title[i]}\n{Tower.multishotChance} %\n<color={goldColor}>{attackGoldCost[i, 0]:#.00} e{attackGoldCost[i, 1]}</color>";
+            case "Multishot":
+                upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]}\n{Tower.multishot:#.00} %\n<color={goldColor}>{attackGoldCost[i, 0]:#.00} e{attackGoldCost[i, 1]}</color>";
+                break;
 
             case "Damage Per Kill":
-                return $"{title[i]}\n{Tower.damagePerKill} %\n<color={goldColor}>{attackGoldCost[i, 0]:#.00} e{attackGoldCost[i, 1]}</color>";
+                upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]}\n{Tower.damagePerKill:#.00} %\n<color={goldColor}>{attackGoldCost[i, 0]:#.00} e{attackGoldCost[i, 1]}</color>";
+                break;
 
 
             case "Health":
-                return $"{title[i]}\n{Tower.health}\n<color={goldColor}>{defenseGoldCost[i, 0]:#.00} e{defenseGoldCost[i, 1]}</color>";
+                upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]}\n{Tower.health:#.00}\n<color={goldColor}>{defenseGoldCost[i, 0]:#.00} e{defenseGoldCost[i, 1]}</color>";
+                break;
 
             case "Regeneration":
-                return $"{title[i]}\n{Tower.regeneration} hp/s\n<color={goldColor}>{defenseGoldCost[i, 0]:#.00} e{defenseGoldCost[i, 1]}</color>";
+                upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]}\n{Tower.regeneration:#.00} hp/s\n<color={goldColor}>{defenseGoldCost[i, 0]:#.00} e{defenseGoldCost[i, 1]}</color>";
+                break;
 
             case "Percentage Block":
-                return $"{title[i]}\n{Tower.percentageBlock} %\n<color={goldColor}>{defenseGoldCost[i, 0]:#.00} e{defenseGoldCost[i, 1]}</color>";
+                upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]}\n{Tower.percentageBlock:#.00} %\n<color={goldColor}>{defenseGoldCost[i, 0]:#.00} e{defenseGoldCost[i, 1]}</color>";
+                break;
 
             case "Flat Block":
-                return $"{title[i]}\n{Tower.flatBlock}\n<color={goldColor}>{defenseGoldCost[i, 0]:#.00} e{defenseGoldCost[i, 1]}</color>";
+                upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]}\n{Tower.flatBlock:#.00}\n<color={goldColor}>{defenseGoldCost[i, 0]:#.00} e{defenseGoldCost[i, 1]}</color>";
+                break;
 
             case "Divine Shield":
-                return $"{title[i]}\n{Tower.divineShield} cooldown\n<color={goldColor}>{defenseGoldCost[i, 0]:#.00} e{defenseGoldCost[i, 1]}</color>";
+                upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]}\n{Tower.divineShield:#.00} cooldown\n<color={goldColor}>{defenseGoldCost[i, 0]:#.00} e{defenseGoldCost[i, 1]}</color>";
+                break;
 
             case "Slow Aura":
-                return $"{title[i]}\n{Tower.slowAura} %\n<color={goldColor}>{defenseGoldCost[i, 0]:#.00} e{defenseGoldCost[i, 1]}</color>";
+                upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]}\n{Tower.slowAura:#.00} %\n<color={goldColor}>{defenseGoldCost[i, 0]:#.00} e{defenseGoldCost[i, 1]}</color>";
+                break;
 
             case "Life steal":
-                return $"{title[i]}\n{Tower.lifeSteal} %\n<color={goldColor}>{defenseGoldCost[i, 0]:#.00} e{defenseGoldCost[i, 1]}</color>";
+                upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]}\n{Tower.lifeSteal:#.00} %\n<color={goldColor}>{defenseGoldCost[i, 0]:#.00} e{defenseGoldCost[i, 1]}</color>";
+                break;
 
             case "Health Per Kill":
-                return $"{title[i]}\n{Tower.healthPerKill} %\n<color={goldColor}>{defenseGoldCost[i, 0]:#.00} e{defenseGoldCost[i, 1]}</color>";
+                upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]}\n{Tower.healthPerKill:#.00} %\n<color={goldColor}>{defenseGoldCost[i, 0]:#.00} e{defenseGoldCost[i, 1]}</color>";
+                break;
 
 
             case "Gold Per Level":
-                return $"{title[i]}\n{Tower.goldPerLevel}\n<color={goldColor}>{utilityGoldCost[i, 0]:#.00} e{utilityGoldCost[i, 1]}</color>";
+                upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]}\n{Tower.goldPerLevel:#.00}\n<color={goldColor}>{utilityGoldCost[i, 0]:#.00} e{utilityGoldCost[i, 1]}</color>";
+                break;
 
             case "Crystals Per Level":
-                return $"{title[i]}\n{Tower.crystalsPerLevel}\n<color={goldColor}>{utilityGoldCost[i, 0]:#.00} e{utilityGoldCost[i, 1]}</color>";
+                upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]}\n{Tower.crystalsPerLevel:#.00}\n<color={goldColor}>{utilityGoldCost[i, 0]:#.00} e{utilityGoldCost[i, 1]}</color>";
+                break;
 
             case "Bonus Gold":
-                return $"{title[i]}\n{Tower.bonusGold} %\n<color={goldColor}>{utilityGoldCost[i, 0]:#.00} e{utilityGoldCost[i, 1]}</color>";
+                upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]}\n{Tower.bonusGold:#.00} %\n<color={goldColor}>{utilityGoldCost[i, 0]:#.00} e{utilityGoldCost[i, 1]}</color>";
+                break;
 
             case "Bonus Crystals":
-                return $"{title[i]}\n{Tower.bonusCrystals} %\n<color={goldColor}>{utilityGoldCost[i, 0]:#.00} e{utilityGoldCost[i, 1]}</color>";
+                upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]}\n{Tower.bonusCrystals:#.00} %\n<color={goldColor}>{utilityGoldCost[i, 0]:#.00} e{utilityGoldCost[i, 1]}</color>";
+                break;
 
             case "Attack Upgrade":
-                return $"{title[i]}\n{Tower.attackUpgrade} %\n<color={goldColor}>{utilityGoldCost[i, 0]:#.00} e{utilityGoldCost[i, 1]}</color>";
+                upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]}\n{Tower.attackUpgrade:#.00} %\n<color={goldColor}>{utilityGoldCost[i, 0]:#.00} e{utilityGoldCost[i, 1]}</color>";
+                break;
 
             case "Health Upgrade":
-                return $"{title[i]}\n{Tower.healthUpgrade} %\n<color={goldColor}>{utilityGoldCost[i, 0]:#.00} e{utilityGoldCost[i, 1]}</color>";
+                upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]}\n{Tower.healthUpgrade:#.00} %\n<color={goldColor}>{utilityGoldCost[i, 0]:#.00} e{utilityGoldCost[i, 1]}</color>";
+                break;
 
             case "Utility Upgrade":
-                return $"{title[i]}\n{Tower.utilityUpgrade} %\n<color={goldColor}>{utilityGoldCost[i, 0]:#.00} e{utilityGoldCost[i, 1]}</color>";
+                upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]}\n{Tower.utilityUpgrade:#.00} %\n<color={goldColor}>{utilityGoldCost[i, 0]:#.00} e{utilityGoldCost[i, 1]}</color>";
+                break;
 
             case "Gold Interest":
-                return $"{title[i]}\n{Tower.goldInterest} %\n<color={goldColor}>{utilityGoldCost[i, 0]:#.00} e{utilityGoldCost[i, 1]}</color>";
+                upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]}\n{Tower.goldInterest:#.00} %\n<color={goldColor}>{utilityGoldCost[i, 0]:#.00} e{utilityGoldCost[i, 1]}</color>";
+                break;
         }
-        return "";
     }
 
-    public void LevelUpUpgrade()
+    public void ClickUpgrade(int i)
     {
+        LevelUpUpgrade(i, true);
+    }
 
+    public void LevelUpUpgrade(int i, bool payForUpgrade)
+    {
+        bool affordUpgrade = true;
+        if (currentMenu == Menu.Attack)
+        {
+            if (payForUpgrade)
+            {
+                Money money = new Money();
+                affordUpgrade = money.SpendGold(new float[] { attackGoldCost[i, 0], attackGoldCost[i, 1] });
+            }
+            if (affordUpgrade)
+            {
+                switch (i)
+                {
+                    case 0:
+                        Tower.attackDamage *= 1.1f;
+                        if (payForUpgrade)
+                        {
+                            attackGoldCost[i, 0] *= 1.2f;
+                        }
+                        break;
+                }
+                if (attackGoldCost[i, 0] >= 10)
+                {
+                    attackGoldCost[i, 0] /= 10;
+                    attackGoldCost[i, 1] += 1;
+                }
+            }
+            DisplayUpgradeText(attackTitles, i);
+        }
     }
 }

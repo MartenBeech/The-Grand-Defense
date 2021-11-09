@@ -15,7 +15,7 @@ public class Tower : MonoBehaviour
     public static float projectileSpeed;
     public static float criticalChance;
     public static float criticalDamage;
-    public static float multishotChance;
+    public static float multishot;
     public static float damagePerKill;
 
     public static float health;
