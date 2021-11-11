@@ -8,7 +8,16 @@ public class Damage : MonoBehaviour
 {
     public void DealDamageToEnemy(Transform target)
     {
-        target.gameObject.GetComponent<EnemyInstance>().health -= Tower.attackDamage;
+        Rng rng = new Rng();
+        bool criticalHit = rng.Chance(Tower.criticalChance);
+        if (criticalHit)
+        {
+            target.gameObject.GetComponent<EnemyInstance>().health -= Tower.attackDamage * Tower.criticalDamage / 100f;
+        }
+        else
+        {
+            target.gameObject.GetComponent<EnemyInstance>().health -= Tower.attackDamage;
+        }
         target.gameObject.GetComponent<EnemyInstance>().targeted = false;
         if (target.gameObject.GetComponent<EnemyInstance>().health <= 0)
         {

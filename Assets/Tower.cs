@@ -32,7 +32,7 @@ public class Tower : MonoBehaviour
     public static float bonusGold;
     public static float bonusCrystals;
     public static float attackUpgrade;
-    public static float healthUpgrade;
+    public static float defenseUpgrade;
     public static float utilityUpgrade;
     public static float goldInterest;
 
@@ -49,11 +49,32 @@ public class Tower : MonoBehaviour
     public void SetStats()
     {
         attackDamage = 10;
-        attackSpeed = 100;
+        attackSpeed = 1;
         range = 5;
-        projectileSpeed = 4;
+        projectileSpeed = 1;
         criticalChance = 0;
+        criticalDamage = 100;
+        multishot = 1;
+        damagePerKill = 0;
+
         health = 10;
+        regeneration = 1;
+        percentageBlock = 0;
+        flatBlock = 0;
+        divineShield = 0;
+        slowAura = 0;
+        lifeSteal = 0;
+        healthPerKill = 0;
+
+        goldPerLevel = 0;
+        crystalsPerLevel = 0;
+        bonusGold = 100;
+        bonusCrystals = 100;
+        attackUpgrade = 0;
+        defenseUpgrade = 0;
+        utilityUpgrade = 0;
+        goldInterest = 0;
+
     }
 
     public void CreateTower()

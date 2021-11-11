@@ -14,6 +14,7 @@ public class MenuUpgrade : MonoBehaviour
     public static bool[] defenseUnlocked = new bool[MENU_SIZE];
     public static bool[] utilityUnlocked = new bool[MENU_SIZE];
     public static bool[] topSecretUnlocked = new bool[MENU_SIZE];
+    // Speed up button - Automatic upgrade attack - Automatic upgrade defense - Automatic upgrade utility - Start next wave button - Free camera - Freeze Enemies - NUKE
 
     public void Init()
     {
@@ -30,18 +31,22 @@ public class MenuUpgrade : MonoBehaviour
         if (menu == GameUpgrade.Menu.Attack.ToString())
         {
             SetUpgrade(attackUnlocked, GameUpgrade.attackTitles);
+            GameUpgrade.currentMenu = GameUpgrade.Menu.Attack; 
         }
         else if (menu == GameUpgrade.Menu.Defense.ToString())
         {
             SetUpgrade(defenseUnlocked, GameUpgrade.defenseTitles);
+            GameUpgrade.currentMenu = GameUpgrade.Menu.Defense;
         }
         else if (menu == GameUpgrade.Menu.Utility.ToString())
         {
             SetUpgrade(utilityUnlocked, GameUpgrade.utilityTitles);
+            GameUpgrade.currentMenu = GameUpgrade.Menu.Utility;
         }
         else if (menu == GameUpgrade.Menu.TopSecret.ToString())
         {
             SetUpgrade(topSecretUnlocked, GameUpgrade.topSecretTitles);
+            GameUpgrade.currentMenu = GameUpgrade.Menu.TopSecret;
         }
     }
 

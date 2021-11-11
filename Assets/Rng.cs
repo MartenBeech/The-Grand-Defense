@@ -39,4 +39,23 @@ public class Rng : MonoBehaviour
         int[] pos = new int[2] { x, z };
         return pos;
     }
+
+    public bool Chance(float percentage)
+    {
+        if (percentage <= 0)
+        {
+            return false;
+        }
+        if (percentage >= 100)
+        {
+            return true;
+        }
+
+        int chance = Range(0, 100);
+        if (chance < Mathf.RoundToInt(percentage))
+        {
+            return true;
+        }
+        return false;
+    }
 }
