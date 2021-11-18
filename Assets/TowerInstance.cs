@@ -6,13 +6,11 @@ using UnityEngine.UI;
 
 public class TowerInstance : MonoBehaviour
 {
-    public float attackIntervalMax;
     public float attackInterval;
 
     private void Awake()
     {
-        attackIntervalMax = 1f / Tower.attackSpeed;
-        attackInterval = attackIntervalMax;
+        attackInterval = 1f / Tower.attackSpeed;
     }
 
     private void Update()
@@ -28,7 +26,7 @@ public class TowerInstance : MonoBehaviour
                 Tower tower = new Tower();
                 if (tower.Attack())
                 {
-                    attackInterval = attackIntervalMax;
+                    attackInterval = 1f / Tower.attackSpeed;
                 }
             }
         }

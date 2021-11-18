@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class MenuUpgrade : MonoBehaviour
 {
-    const int MENU_SIZE = GameUpgrade.MENU_SIZE;
+    const int MENU_SIZE = Upgrade.MENU_SIZE;
 
     public static GameObject[] upgrades = new GameObject[MENU_SIZE];
 
@@ -28,25 +28,25 @@ public class MenuUpgrade : MonoBehaviour
 
     public void OpenMenu(string menu)
     {
-        if (menu == GameUpgrade.Menu.Attack.ToString())
+        if (menu == Upgrade.Menu.Attack.ToString())
         {
-            SetUpgrade(attackUnlocked, GameUpgrade.attackTitles);
-            GameUpgrade.currentMenu = GameUpgrade.Menu.Attack; 
+            SetUpgrade(attackUnlocked, Upgrade.attackTitles);
+            Upgrade.currentMenu = Upgrade.Menu.Attack; 
         }
-        else if (menu == GameUpgrade.Menu.Defense.ToString())
+        else if (menu == Upgrade.Menu.Defense.ToString())
         {
-            SetUpgrade(defenseUnlocked, GameUpgrade.defenseTitles);
-            GameUpgrade.currentMenu = GameUpgrade.Menu.Defense;
+            SetUpgrade(defenseUnlocked, Upgrade.defenseTitles);
+            Upgrade.currentMenu = Upgrade.Menu.Defense;
         }
-        else if (menu == GameUpgrade.Menu.Utility.ToString())
+        else if (menu == Upgrade.Menu.Utility.ToString())
         {
-            SetUpgrade(utilityUnlocked, GameUpgrade.utilityTitles);
-            GameUpgrade.currentMenu = GameUpgrade.Menu.Utility;
+            SetUpgrade(utilityUnlocked, Upgrade.utilityTitles);
+            Upgrade.currentMenu = Upgrade.Menu.Utility;
         }
-        else if (menu == GameUpgrade.Menu.TopSecret.ToString())
+        else if (menu == Upgrade.Menu.TopSecret.ToString())
         {
-            SetUpgrade(topSecretUnlocked, GameUpgrade.topSecretTitles);
-            GameUpgrade.currentMenu = GameUpgrade.Menu.TopSecret;
+            SetUpgrade(topSecretUnlocked, Upgrade.topSecretTitles);
+            Upgrade.currentMenu = Upgrade.Menu.TopSecret;
         }
     }
 

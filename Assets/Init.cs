@@ -12,8 +12,8 @@ public class Init : MonoBehaviour
         cam.Init();
         Tower tower = new Tower();
         tower.Init();
-        GameUpgrade gameUpgrade = new GameUpgrade();
-        gameUpgrade.Init();
+        Upgrade Upgrade = new Upgrade();
+        Upgrade.Init();
         MenuUpgrade menuUpgrade = new MenuUpgrade();
         menuUpgrade.Init();
         MainMenu mainMenu = new MainMenu();

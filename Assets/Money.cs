@@ -24,9 +24,18 @@ public class Money : MonoBehaviour
 
     public void GainGold(float[] amount)
     {
-        gold[1] += amount[1];
+        if (amount[1] > gold[1] && gold[0] > amount[0])
+        {
+            gold[0] /= 10;
+            gold[1] += 1;
+        }
+        while (amount[1] > gold[1])
+        {
+            gold[1] += 1;
+        }
+
         gold[0] += amount[0] / Mathf.Pow(10, gold[1] - amount[1]);
-        if (gold[0] >= 10)
+        while (gold[0] >= 10)
         {
             gold[0] /= 10;
             gold[1] += 1;
@@ -51,7 +60,7 @@ public class Money : MonoBehaviour
         if (gold[1] > amount[1])
         {
             gold[0] -= amount[0] / Mathf.Pow(10, gold[1] - amount[1]);
-            while (gold[0] < 1)
+            while (gold[0] < 1 && gold[1] >= 0)
             {
                 gold[0] *= 10;
                 gold[1] -= 1;
@@ -62,7 +71,7 @@ public class Money : MonoBehaviour
         else if (gold[1] == amount[1] && gold[0] >= amount[0])
         {
             gold[0] -= amount[0];
-            while (gold[0] < 1)
+            while (gold[0] < 1 && gold[1] >= 0)
             {
                 gold[0] *= 10;
                 gold[1] -= 1;
@@ -88,8 +97,8 @@ public class Money : MonoBehaviour
     public void DisplayGold()
     {
         Mathf.Round(gold[1]);
-        inGameGold.GetComponentInChildren<Text>().text = $"${gold[0].ToString("#.00")} e{gold[1]}";
-        MenuGold.GetComponentInChildren<Text>().text = $"${gold[0].ToString("#.00")} e{gold[1]}";
+        inGameGold.GetComponentInChildren<Text>().text = $"${GetMoneyText(gold[0], gold[1])}";
+        MenuGold.GetComponentInChildren<Text>().text = $"${GetMoneyText(gold[0], gold[1])}";
     }
 
     public void DisplayCrystals()
@@ -97,5 +106,14 @@ public class Money : MonoBehaviour
         Mathf.Round(crystals[1]);
         inGameGold.GetComponentInChildren<Text>().text = $"${crystals[0].ToString("#.00")} e{crystals[1]}";
         MenuGold.GetComponentInChildren<Text>().text = $"${crystals[0].ToString("#.00")} e{crystals[1]}";
+    }
+
+    public string GetMoneyText(float value, float pow)
+    {
+        if (pow < 6)
+        {
+            return $"{value * Mathf.Pow(10, pow):#.}";
+        }
+        return $"{value:#.00} e{pow}";
     }
 }

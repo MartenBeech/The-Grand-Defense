@@ -443,7 +443,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 670599033}
+      - m_Target: {fileID: 898010199}
         m_TargetAssemblyTypeName: Upgrade, Assembly-CSharp
         m_MethodName: OpenMenu
         m_Mode: 5
@@ -2396,7 +2396,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 670599033}
+      - m_Target: {fileID: 898010199}
         m_TargetAssemblyTypeName: Upgrade, Assembly-CSharp
         m_MethodName: OpenMenu
         m_Mode: 5
@@ -2552,8 +2552,8 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 670599028}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -38.729797}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 509745661}
@@ -2571,12 +2571,12 @@ RectTransform:
   - {fileID: 1684812426}
   - {fileID: 2143308837}
   - {fileID: 1306349621}
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_Father: {fileID: 898010200}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -294.23962, y: -157.94092}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &670599030
@@ -2652,7 +2652,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3106791647863534aa7352a51bbd64ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentMenu: 0
 --- !u!1 &672217564
 GameObject:
   m_ObjectHideFlags: 0
@@ -3513,6 +3512,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 894470285}
   m_CullTransparentMesh: 1
+--- !u!1 &898010198
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 898010200}
+  - component: {fileID: 898010199}
+  m_Layer: 0
+  m_Name: UpgradeBar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &898010199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 898010198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28b31fe703941294085c40b86f08f5ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &898010200
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 898010198}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 294.23962, y: 157.94092, z: 38.729797}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 670599029}
+  - {fileID: 1721473745}
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &898234925
 GameObject:
   m_ObjectHideFlags: 0
@@ -4013,7 +4057,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 670599033}
+      - m_Target: {fileID: 898010199}
         m_TargetAssemblyTypeName: Upgrade, Assembly-CSharp
         m_MethodName: OpenMenu
         m_Mode: 5
@@ -4945,7 +4989,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 670599033}
+      - m_Target: {fileID: 898010199}
         m_TargetAssemblyTypeName: Upgrade, Assembly-CSharp
         m_MethodName: OpenMenu
         m_Mode: 5
@@ -5286,7 +5330,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1588660092
 GameObject:
@@ -6021,8 +6065,8 @@ RectTransform:
   - {fileID: 1295183920}
   - {fileID: 451198540}
   - {fileID: 1090963664}
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_Father: {fileID: 898010200}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

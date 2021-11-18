@@ -87,16 +87,16 @@ public class Game : MonoBehaviour
                 switch (wave)
                 {
                     case 0:
-                        enemy.CreateEnemies(10, Enemy.Types.Normal, 5, 10);
+                        enemy.CreateEnemies(3, Enemy.Types.Normal, 5, 10);
                         break;
                     case 1:
-                        enemy.CreateEnemies(10, Enemy.Types.Normal, 5, 10);
+                        enemy.CreateEnemies(3, Enemy.Types.Normal, 5, 10);
                         break;
                     case 2:
-                        enemy.CreateEnemies(10, Enemy.Types.Normal, 5, 10);
+                        enemy.CreateEnemies(3, Enemy.Types.Normal, 5, 10);
                         break;
                     case 3:
-                        enemy.CreateEnemies(10, Enemy.Types.Normal, 5, 10);
+                        enemy.CreateEnemies(3, Enemy.Types.Normal, 5, 10);
                         break;
                 }
                 break;

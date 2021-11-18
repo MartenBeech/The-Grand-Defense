@@ -27,6 +27,8 @@ public class MainMenu : MonoBehaviour
         Game.inProgress = true;
         Game gameLevel = new Game();
         gameLevel.StartNextLevel();
+        Upgrade upgrade = new Upgrade();
+        upgrade.OpenMenu(Upgrade.currentMenu.ToString());
     }
 
     public void EndGame()
