@@ -22,8 +22,15 @@ public class Money : MonoBehaviour
         MenuCrystals = GameObject.Find("MenuCrystals");
     }
 
-    public void GainGold(float[] amount)
+    public void GainGold(float[] amount, bool gainCrystals)
     {
+        if (gainCrystals)
+        {
+            float[] crystalGain = { amount[0], amount[1] - 2 };
+            GainCrystals(crystalGain);
+        }
+
+        amount[0] *= Tower.goldValue / 100;
         if (amount[1] > gold[1] && gold[0] > amount[0])
         {
             gold[0] /= 10;
@@ -45,9 +52,19 @@ public class Money : MonoBehaviour
 
     public void GainCrystals(float[] amount)
     {
-        crystals[1] += amount[1];
+        amount[0] *= Tower.crystalValue / 100;
+        if (amount[1] > crystals[1] && crystals[0] > amount[0])
+        {
+            crystals[0] /= 10;
+            crystals[1] += 1;
+        }
+        while (amount[1] > crystals[1])
+        {
+            crystals[1] += 1;
+        }
+
         crystals[0] += amount[0] / Mathf.Pow(10, crystals[1] - amount[1]);
-        if (crystals[0] >= 10)
+        while (crystals[0] >= 10)
         {
             crystals[0] /= 10;
             crystals[1] += 1;
@@ -104,15 +121,22 @@ public class Money : MonoBehaviour
     public void DisplayCrystals()
     {
         Mathf.Round(crystals[1]);
-        inGameGold.GetComponentInChildren<Text>().text = $"${crystals[0].ToString("#.00")} e{crystals[1]}";
-        MenuGold.GetComponentInChildren<Text>().text = $"${crystals[0].ToString("#.00")} e{crystals[1]}";
+        inGameCrystals.GetComponentInChildren<Text>().text = $"€{GetMoneyText(crystals[0], crystals[1])}";
+        MenuCrystals.GetComponentInChildren<Text>().text = $"€{GetMoneyText(crystals[0], crystals[1])}";
     }
 
     public string GetMoneyText(float value, float pow)
     {
         if (pow < 6)
         {
-            return $"{value * Mathf.Pow(10, pow):#.}";
+            if (value < 1)
+            {
+                return $"0{value * Mathf.Pow(10, pow):#.00}";
+            }
+            else
+            {
+                return $"{value * Mathf.Pow(10, pow):#.}";
+            }
         }
         return $"{value:#.00} e{pow}";
     }

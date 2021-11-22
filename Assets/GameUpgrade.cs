@@ -29,24 +29,24 @@ public class GameUpgrade : MonoBehaviour
                 break;
 
             case "Critical Chance":
-                Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.attackCurrentLevels[i]}/{Upgrade.attackMaxLevels[i]})</size>\n{Tower.criticalChance:#.} %\n$<color={goldColor}>{money.GetMoneyText(Upgrade.attackCurrentGoldCost[i, 0], Upgrade.attackCurrentGoldCost[i, 1])}</color>";
+                Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.attackCurrentLevels[i]}/{Upgrade.attackMaxLevels[i]})</size>\n{Tower.criticalChance} %\n$<color={goldColor}>{money.GetMoneyText(Upgrade.attackCurrentGoldCost[i, 0], Upgrade.attackCurrentGoldCost[i, 1])}</color>";
                 break;
 
             case "Critical Damage":
-                Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.attackCurrentLevels[i]}/{Upgrade.attackMaxLevels[i]})</size>\n{Tower.criticalDamage:#.} %\n$<color={goldColor}>{money.GetMoneyText(Upgrade.attackCurrentGoldCost[i, 0], Upgrade.attackCurrentGoldCost[i, 1])}</color>";
+                Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.attackCurrentLevels[i]}/{Upgrade.attackMaxLevels[i]})</size>\n{Tower.criticalDamage} %\n$<color={goldColor}>{money.GetMoneyText(Upgrade.attackCurrentGoldCost[i, 0], Upgrade.attackCurrentGoldCost[i, 1])}</color>";
                 break;
 
             case "Multishot":
-                Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.attackCurrentLevels[i]}/{Upgrade.attackMaxLevels[i]})</size>\n{Tower.multishot:#.} %\n$<color={goldColor}>{money.GetMoneyText(Upgrade.attackCurrentGoldCost[i, 0], Upgrade.attackCurrentGoldCost[i, 1])}</color>";
+                Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.attackCurrentLevels[i]}/{Upgrade.attackMaxLevels[i]})</size>\n{Tower.multishot}\n$<color={goldColor}>{money.GetMoneyText(Upgrade.attackCurrentGoldCost[i, 0], Upgrade.attackCurrentGoldCost[i, 1])}</color>";
                 break;
 
             case "Damage Per Kill":
-                Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.attackCurrentLevels[i]}/{Upgrade.attackMaxLevels[i]})</size>\n{Tower.damagePerKill:#.} %\n$<color={goldColor}>{money.GetMoneyText(Upgrade.attackCurrentGoldCost[i, 0], Upgrade.attackCurrentGoldCost[i, 1])}</color>";
+                Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.attackCurrentLevels[i]}/{Upgrade.attackMaxLevels[i]})</size>\n{Tower.damagePerKill} %\n$<color={goldColor}>{money.GetMoneyText(Upgrade.attackCurrentGoldCost[i, 0], Upgrade.attackCurrentGoldCost[i, 1])}</color>";
                 break;
 
 
             case "Health":
-                Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.defenseCurrentLevels[i]}/{Upgrade.defenseMaxLevels[i]})</size>\n{Tower.health:#.00}\n$<color={goldColor}>{money.GetMoneyText(Upgrade.defenseCurrentGoldCost[i, 0], Upgrade.defenseCurrentGoldCost[i, 1])}</color>";
+                Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.defenseCurrentLevels[i]}/{Upgrade.defenseMaxLevels[i]})</size>\n{Tower.healthMax:#.00}\n$<color={goldColor}>{money.GetMoneyText(Upgrade.defenseCurrentGoldCost[i, 0], Upgrade.defenseCurrentGoldCost[i, 1])}</color>";
                 break;
 
             case "Regeneration":
@@ -62,7 +62,7 @@ public class GameUpgrade : MonoBehaviour
                 break;
 
             case "Divine Shield":
-                Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.defenseCurrentLevels[i]}/{Upgrade.defenseMaxLevels[i]})</size>\n{Tower.divineShield:#.00} cooldown\n$<color={goldColor}>{money.GetMoneyText(Upgrade.defenseCurrentGoldCost[i, 0], Upgrade.defenseCurrentGoldCost[i, 1])}</color>";
+                Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.defenseCurrentLevels[i]}/{Upgrade.defenseMaxLevels[i]})</size>\n{10 - (Tower.divineShield / 2)} sec cd\n$<color={goldColor}>{money.GetMoneyText(Upgrade.defenseCurrentGoldCost[i, 0], Upgrade.defenseCurrentGoldCost[i, 1])}</color>";
                 break;
 
             case "Slow Aura":
@@ -86,12 +86,12 @@ public class GameUpgrade : MonoBehaviour
                 Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.utilityCurrentLevels[i]}/{Upgrade.utilityMaxLevels[i]})</size>\n{Tower.crystalsPerLevel:#.00}\n$<color={goldColor}>{money.GetMoneyText(Upgrade.utilityCurrentGoldCost[i, 0], Upgrade.utilityCurrentGoldCost[i, 1])}</color>";
                 break;
 
-            case "Bonus Gold":
-                Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.utilityCurrentLevels[i]}/{Upgrade.utilityMaxLevels[i]})</size>\n{Tower.bonusGold:#.} %\n$<color={goldColor}>{money.GetMoneyText(Upgrade.utilityCurrentGoldCost[i, 0], Upgrade.utilityCurrentGoldCost[i, 1])}</color>";
+            case "Gold Value":
+                Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.utilityCurrentLevels[i]}/{Upgrade.utilityMaxLevels[i]})</size>\n{Tower.goldValue:#.} %\n$<color={goldColor}>{money.GetMoneyText(Upgrade.utilityCurrentGoldCost[i, 0], Upgrade.utilityCurrentGoldCost[i, 1])}</color>";
                 break;
 
-            case "Bonus Crystals":
-                Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.utilityCurrentLevels[i]}/{Upgrade.utilityMaxLevels[i]})</size>\n{Tower.bonusCrystals:#.} %\n$<color={goldColor}>{money.GetMoneyText(Upgrade.utilityCurrentGoldCost[i, 0], Upgrade.utilityCurrentGoldCost[i, 1])}</color>";
+            case "Crystal Value":
+                Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.utilityCurrentLevels[i]}/{Upgrade.utilityMaxLevels[i]})</size>\n{Tower.crystalValue:#.} %\n$<color={goldColor}>{money.GetMoneyText(Upgrade.utilityCurrentGoldCost[i, 0], Upgrade.utilityCurrentGoldCost[i, 1])}</color>";
                 break;
 
             case "Attack Upgrade":
@@ -114,13 +114,13 @@ public class GameUpgrade : MonoBehaviour
 
     public void ClickUpgrade(int i)
     {
-        LevelUpUpgrade(i, true);
+        LevelUpUpgrade(i, true, Upgrade.currentMenu);
     }
 
-    public void LevelUpUpgrade(int i, bool payForUpgrade)
+    public void LevelUpUpgrade(int i, bool payForUpgrade, Upgrade.Menu menu)
     {
         bool affordUpgrade = true;
-        if (Upgrade.currentMenu == Upgrade.Menu.Attack)
+        if (menu == Upgrade.Menu.Attack)
         {
             if (payForUpgrade)
             {
@@ -149,6 +149,8 @@ public class GameUpgrade : MonoBehaviour
 
                     case 2:
                         Tower.range += 0.5f;
+                        Tower tower = new Tower();
+                        tower.SetIndicators();
                         if (payForUpgrade)
                         {
                             Upgrade.attackCurrentGoldCost[i, 0] *= 1.15f;
@@ -188,7 +190,7 @@ public class GameUpgrade : MonoBehaviour
                         break;
 
                     case 7:
-                        Tower.damagePerKill += 0.01f;
+                        Tower.damagePerKill += 1f;
                         if (payForUpgrade)
                         {
                             Upgrade.attackCurrentGoldCost[i, 0] *= 10f;
@@ -205,11 +207,14 @@ public class GameUpgrade : MonoBehaviour
                 {
                     Upgrade.upgrades[0].GetComponent<Button>().enabled = false;
                 }
-                DisplayUpgradeText(Upgrade.attackTitles, i);
+                if (menu == Upgrade.currentMenu)
+                {
+                    DisplayUpgradeText(Upgrade.attackTitles, i);
+                }
             }
         }
 
-        else if (Upgrade.currentMenu == Upgrade.Menu.Defense)
+        else if (menu == Upgrade.Menu.Defense)
         {
             if (payForUpgrade)
             {
@@ -221,7 +226,11 @@ public class GameUpgrade : MonoBehaviour
                 switch (i)
                 {
                     case 0:
-                        Tower.health *= 1.1f;
+                        float healthGain = Tower.healthMax * 0.1f;
+                        Tower.healthMax += healthGain;
+                        Tower.healthCurrent += healthGain;
+                        UI ui = new UI();
+                        ui.DisplayHealthBar();
                         if (payForUpgrade)
                         {
                             Upgrade.defenseCurrentGoldCost[i, 0] *= 1.2f;
@@ -289,11 +298,19 @@ public class GameUpgrade : MonoBehaviour
                     Upgrade.defenseCurrentGoldCost[i, 0] /= 10;
                     Upgrade.defenseCurrentGoldCost[i, 1] += 1;
                 }
+                Upgrade.defenseCurrentLevels[i] += 1;
+                if (Upgrade.defenseCurrentLevels[i] == Upgrade.defenseMaxLevels[i])
+                {
+                    Upgrade.upgrades[0].GetComponent<Button>().enabled = false;
+                }
+                if (menu == Upgrade.currentMenu)
+                {
+                    DisplayUpgradeText(Upgrade.defenseTitles, i);
+                }
             }
-            DisplayUpgradeText(Upgrade.defenseTitles, i);
         }
 
-        else if (Upgrade.currentMenu == Upgrade.Menu.Utility)
+        else if (menu == Upgrade.Menu.Utility)
         {
             if (payForUpgrade)
             {
@@ -321,7 +338,7 @@ public class GameUpgrade : MonoBehaviour
                         break;
 
                     case 2:
-                        Tower.bonusGold += 0.05f;
+                        Tower.goldValue += 5f;
                         if (payForUpgrade)
                         {
                             Upgrade.utilityCurrentGoldCost[i, 0] *= 1.2f;
@@ -329,7 +346,7 @@ public class GameUpgrade : MonoBehaviour
                         break;
 
                     case 3:
-                        Tower.bonusCrystals += 0.05f;
+                        Tower.crystalValue += 5f;
                         if (payForUpgrade)
                         {
                             Upgrade.utilityCurrentGoldCost[i, 0] *= 1.2f;
@@ -337,7 +354,7 @@ public class GameUpgrade : MonoBehaviour
                         break;
 
                     case 4:
-                        Tower.attackUpgrade += 0.02f;
+                        Tower.attackUpgrade += 2f;
                         if (payForUpgrade)
                         {
                             Upgrade.utilityCurrentGoldCost[i, 0] *= 1.1f;
@@ -345,7 +362,7 @@ public class GameUpgrade : MonoBehaviour
                         break;
 
                     case 5:
-                        Tower.defenseUpgrade += 0.02f;
+                        Tower.defenseUpgrade += 2f;
                         if (payForUpgrade)
                         {
                             Upgrade.utilityCurrentGoldCost[i, 0] *= 1.1f;
@@ -353,7 +370,7 @@ public class GameUpgrade : MonoBehaviour
                         break;
 
                     case 6:
-                        Tower.utilityUpgrade += 0.02f;
+                        Tower.utilityUpgrade += 2f;
                         if (payForUpgrade)
                         {
                             Upgrade.utilityCurrentGoldCost[i, 0] *= 1.1f;
@@ -361,7 +378,7 @@ public class GameUpgrade : MonoBehaviour
                         break;
 
                     case 7:
-                        Tower.goldInterest += 0.1f;
+                        Tower.goldInterest += 10f;
                         if (payForUpgrade)
                         {
                             Upgrade.utilityCurrentGoldCost[i, 0] *= 25f;
@@ -373,8 +390,70 @@ public class GameUpgrade : MonoBehaviour
                     Upgrade.utilityCurrentGoldCost[i, 0] /= 10;
                     Upgrade.utilityCurrentGoldCost[i, 1] += 1;
                 }
+                Upgrade.utilityCurrentLevels[i] += 1;
+                if (Upgrade.utilityCurrentLevels[i] == Upgrade.utilityMaxLevels[i])
+                {
+                    Upgrade.upgrades[0].GetComponent<Button>().enabled = false;
+                }
+                if (menu == Upgrade.currentMenu)
+                {
+                    DisplayUpgradeText(Upgrade.utilityTitles, i);
+                }
             }
-            DisplayUpgradeText(Upgrade.utilityTitles, i);
         }
+    }
+
+    public void LevelUpRandomAttack()
+    {
+        List<int> indexes = new List<int>();
+
+        for (int i = 0; i < Upgrade.MENU_SIZE; i++)
+        {
+            if (Upgrade.attackUnlocked[i])
+            {
+                indexes.Add(i);
+            }
+        }
+
+        Rng rng = new Rng();
+        int rnd = rng.Range(0, indexes.Count);
+
+        LevelUpUpgrade(indexes[rnd], false, Upgrade.Menu.Attack);
+    }
+
+    public void LevelUpRandomDefense()
+    {
+        List<int> indexes = new List<int>();
+
+        for (int i = 0; i < Upgrade.MENU_SIZE; i++)
+        {
+            if (Upgrade.defenseUnlocked[i])
+            {
+                indexes.Add(i);
+            }
+        }
+
+        Rng rng = new Rng();
+        int rnd = rng.Range(0, indexes.Count);
+
+        LevelUpUpgrade(indexes[rnd], false, Upgrade.Menu.Defense);
+    }
+
+    public void LevelUpRandomUtility()
+    {
+        List<int> indexes = new List<int>();
+
+        for (int i = 0; i < Upgrade.MENU_SIZE; i++)
+        {
+            if (Upgrade.utilityUnlocked[i])
+            {
+                indexes.Add(i);
+            }
+        }
+
+        Rng rng = new Rng();
+        int rnd = rng.Range(0, indexes.Count);
+
+        LevelUpUpgrade(indexes[rnd], false, Upgrade.Menu.Utility);
     }
 }

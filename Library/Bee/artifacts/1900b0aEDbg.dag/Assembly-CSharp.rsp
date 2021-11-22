@@ -322,7 +322,7 @@
 "Assets/Damage.cs"
 "Assets/Enemy.cs"
 "Assets/EnemyInstance.cs"
-"Assets/Game.cs"
+"Assets/GameLevel.cs"
 "Assets/GameUpgrade.cs"
 "Assets/Init.cs"
 "Assets/MainMenu.cs"
@@ -332,6 +332,7 @@
 "Assets/Rng.cs"
 "Assets/Tower.cs"
 "Assets/TowerInstance.cs"
+"Assets/UI.cs"
 "Assets/Upgrade.cs"
 -langversion:8.0
 

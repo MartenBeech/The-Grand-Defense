@@ -23,19 +23,23 @@ public class MainMenu : MonoBehaviour
         mainMenuCanvas.GetComponent<Canvas>().enabled = false;
         inGameCanvas.GetComponent<Canvas>().enabled = true;
         Money.gold = new float[] { 0, 0 };
-        Game.level = 0;
-        Game.inProgress = true;
-        Game gameLevel = new Game();
+        GameLevel.level = 0;
+        GameLevel.inProgress = true;
+        GameLevel gameLevel = new GameLevel();
         gameLevel.StartNextLevel();
         Upgrade upgrade = new Upgrade();
         upgrade.OpenMenu(Upgrade.currentMenu.ToString());
+        Tower tower = new Tower();
+        tower.SetIndicators();
+        UI ui = new UI();
+        ui.DisplayHealthBar();
     }
 
     public void EndGame()
     {
         mainMenuCanvas.GetComponent<Canvas>().enabled = true;
         inGameCanvas.GetComponent<Canvas>().enabled = false;
-        Game.inProgress = false;
+        GameLevel.inProgress = false;
         day++;
         startBtn.GetComponentInChildren<Text>().text = $"Start Day {day}";
     }

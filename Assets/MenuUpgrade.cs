@@ -68,12 +68,4 @@ public class MenuUpgrade : MonoBehaviour
             }
         }
     }
-
-    public void UnlockUpgrade(bool[] unlocked, int i)
-    {
-        if (!unlocked[i])
-        {
-            unlocked[i] = true;
-        }
-    }
 }

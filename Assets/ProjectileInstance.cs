@@ -22,7 +22,7 @@ public class ProjectileInstance : MonoBehaviour
 
     void Update()
     {
-        if (Game.inProgress)
+        if (GameLevel.inProgress)
         {
             if (target == null)
             {
@@ -33,6 +33,7 @@ public class ProjectileInstance : MonoBehaviour
                 Vector3 dir = new Vector3(target.position.x, target.position.y, target.position.z) - new Vector3(xStart, yStart, zStart);
                 float dist = Mathf.Sqrt(
                     Mathf.Pow(target.position.x - xStart, 2) +
+                    Mathf.Pow(target.position.y - yStart, 2) +
                     Mathf.Pow(target.position.z - zStart, 2));
                 transform.Translate(dir.normalized * dist * (Time.deltaTime) * Tower.projectileSpeed);
                 count -= Time.deltaTime;

@@ -12,8 +12,8 @@ public class Upgrade : MonoBehaviour
     public static Menu currentMenu = Menu.Attack;
     public static string[] attackTitles = new string[MENU_SIZE] { "Attack Damage", "Attack Speed", "Range", "Projectile Speed", "Critical Chance", "Critical Damage", "Multishot", "Damage Per Kill" };
     public static string[] defenseTitles = new string[MENU_SIZE] { "Health", "Regeneration", "Percentage Block", "Flat Block", "Divine Shield", "Slow Aura", "Life steal", "Health Per Kill" };
-    public static string[] utilityTitles = new string[MENU_SIZE] { "Gold Per Level", "Crystals Per Level", "Bonus Gold", "Bonus Crystals", "Attack Upgrade", "Defense Upgrade", "Utility Upgrade", "Gold Interest" };
-    public static string[] topSecretTitles = new string[MENU_SIZE] { "Start Next Wave Button", "Automatic Upgrade Attack", "Automatic Upgrade Defense", "Automatic Upgrade Utility", "Free Camera", "Speed Up Button", "Freeze Enemies", "NUKE" };
+    public static string[] utilityTitles = new string[MENU_SIZE] { "Gold Per Level", "Crystals Per Level", "Gold Value", "Crystal Value", "Attack Upgrade", "Defense Upgrade", "Utility Upgrade", "Gold Interest" };
+    public static string[] topSecretTitles = new string[MENU_SIZE] { "Start Next Wave Early", "Change Colors", "Automatic Upgrade Attack", "Automatic Upgrade Defense", "Automatic Upgrade Utility", "Speed Up Button", "Freeze Enemies", "NUKE" };
 
     public static int[] attackMaxLevels = new int[MENU_SIZE] { 999, 100, 100, 100, 50, 50, 9, 10 };
     public static int[] defenseMaxLevels = new int[MENU_SIZE] { 999, 999, 99, 100, 19, 40, 20, 10 };
@@ -63,6 +63,14 @@ public class Upgrade : MonoBehaviour
         UnlockUpgrade(attackUnlocked, 1);
         UnlockUpgrade(defenseUnlocked, 0);
         UnlockUpgrade(defenseUnlocked, 1);
+
+        for (int i = 0; i < MENU_SIZE; i++)
+        {
+            UnlockUpgrade(attackUnlocked, i);
+            UnlockUpgrade(defenseUnlocked, i);
+            UnlockUpgrade(utilityUnlocked, i);
+            UnlockUpgrade(topSecretUnlocked, i);
+        }
 
         OpenMenu("Attack");
 
