@@ -35,7 +35,7 @@ public class Enemy : MonoBehaviour
                 prefab.GetComponent<EnemyInstance>().diameter = 1;
                 prefab.GetComponent<EnemyInstance>().health = 10;
                 prefab.GetComponent<EnemyInstance>().attack = 1;
-                prefab.GetComponent<EnemyInstance>().bounty = new float[] { 1f, 5 };
+                prefab.GetComponent<EnemyInstance>().bounty = new float[] { 1f, 0 };
                 prefab.GetComponent<EnemyInstance>().speedMax = 0.1f;
                 break;
         }

@@ -46,6 +46,7 @@ public class Upgrade : MonoBehaviour
     public static float[,] topSecretCurrentCrystalCost = new float[MENU_SIZE, 2] { { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 } };
 
     public static GameObject[] upgrades = new GameObject[MENU_SIZE];
+    public static GameObject[] menuUpgrades = new GameObject[MENU_SIZE];
 
     public static bool[] attackUnlocked = new bool[MENU_SIZE];
     public static bool[] defenseUnlocked = new bool[MENU_SIZE];
@@ -57,6 +58,7 @@ public class Upgrade : MonoBehaviour
         for (int i = 0; i < MENU_SIZE; i++)
         {
             upgrades[i] = GameObject.Find($"Upgrade{i}");
+            menuUpgrades[i] = GameObject.Find($"MenuUpgrade{i}");
         }
 
         UnlockUpgrade(attackUnlocked, 0);
@@ -72,16 +74,18 @@ public class Upgrade : MonoBehaviour
             UnlockUpgrade(topSecretUnlocked, i);
         }
 
-        OpenMenu("Attack");
-
         for (int i = 0; i < MENU_SIZE; i++)
         {
             for (int j = 0; j < 2; j++)
             {
-                attackCurrentGoldCost[i, j] = attackDefaultGoldCost[i, j];
                 attackCurrentCrystalCost[i, j] = attackDefaultGoldCost[i, j];
+                defenseCurrentCrystalCost[i, j] = defenseDefaultGoldCost[i, j];
+                utilityCurrentCrystalCost[i, j] = utilityDefaultGoldCost[i, j];
             }
         }
+
+        OpenMenu("Attack");
+        ResetGoldCost();
     }
 
     public void UnlockUpgrade(bool[] unlocked, int i)
@@ -119,6 +123,7 @@ public class Upgrade : MonoBehaviour
     public void SetUpgradeButtons(bool[] unlocked, string[] title)
     {
         GameUpgrade gameUpgrade = new GameUpgrade();
+        MenuUpgrade menuUpgrade = new MenuUpgrade();
         for (int i = 0; i < MENU_SIZE; i++)
         {
             if (unlocked[i])
@@ -126,12 +131,26 @@ public class Upgrade : MonoBehaviour
                 upgrades[i].GetComponent<Image>().enabled = true;
                 upgrades[i].GetComponent<Button>().enabled = true;
                 gameUpgrade.DisplayUpgradeText(title, i);
+                menuUpgrade.DisplayUpgradeText(title, i);
             }
             else if (!unlocked[i])
             {
                 upgrades[i].GetComponent<Image>().enabled = false;
                 upgrades[i].GetComponent<Button>().enabled = false;
                 upgrades[i].GetComponentInChildren<Text>().text = "";
+            }
+        }
+    }
+
+    public void ResetGoldCost()
+    {
+        for (int i = 0; i < MENU_SIZE; i++)
+        {
+            for (int j = 0; j < 2; j++)
+            {
+                attackCurrentGoldCost[i, j] = attackDefaultGoldCost[i, j];
+                defenseCurrentGoldCost[i, j] = defenseDefaultGoldCost[i, j];
+                utilityCurrentGoldCost[i, j] = utilityDefaultGoldCost[i, j];
             }
         }
     }

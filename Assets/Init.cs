@@ -14,8 +14,6 @@ public class Init : MonoBehaviour
         tower.Init();
         Upgrade Upgrade = new Upgrade();
         Upgrade.Init();
-        MenuUpgrade menuUpgrade = new MenuUpgrade();
-        menuUpgrade.Init();
         MainMenu mainMenu = new MainMenu();
         mainMenu.Init();
         Money money = new Money();

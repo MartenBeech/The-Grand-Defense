@@ -33,6 +33,8 @@ public class MainMenu : MonoBehaviour
         tower.SetIndicators();
         UI ui = new UI();
         ui.DisplayHealthBar();
+
+        upgrade.ResetGoldCost();
     }
 
     public void EndGame()

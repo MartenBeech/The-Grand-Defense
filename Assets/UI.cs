@@ -26,4 +26,22 @@ public class UI : MonoBehaviour
             healthBar.GetComponent<Image>().color = Color.HSVToRGB((Tower.healthCurrent / Tower.healthMax) * 120 / 360, 1f, 1f);
         }
     }
+
+    public string GetNumberText(float number, bool twoDecimals)
+    {
+        string text;
+        if (number == 0)
+        {
+            return "0";
+        }
+        if (number < 100 && twoDecimals)
+        {
+            text = $"{number:#.00}";
+        }
+        else
+        {
+            text = $"{number:#.}";
+        }
+        return text;
+    }
 }

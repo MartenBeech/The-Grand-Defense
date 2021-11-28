@@ -118,7 +118,7 @@ public class GameLevel : MonoBehaviour
                         enemy.CreateEnemies(3, Enemy.Types.Normal, 5, 10);
                         break;
                     case 3:
-                        enemy.CreateEnemies(3, Enemy.Types.Normal, 5, 10);
+                        enemy.CreateEnemies(30, Enemy.Types.Normal, 5, 10);
                         break;
                 }
                 break;

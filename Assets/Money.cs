@@ -129,9 +129,17 @@ public class Money : MonoBehaviour
     {
         if (pow < 6)
         {
-            if (value < 1)
+            if (value == 0)
+            {
+                return "0";
+            }
+            else if (value < 1)
             {
                 return $"0{value * Mathf.Pow(10, pow):#.00}";
+            }
+            else if (pow < 2)
+            {
+                return $"{value * Mathf.Pow(10, pow):#.00}";
             }
             else
             {

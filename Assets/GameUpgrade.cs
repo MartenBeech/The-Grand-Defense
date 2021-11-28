@@ -9,105 +9,106 @@ public class GameUpgrade : MonoBehaviour
     public void DisplayUpgradeText(string[] title, int i)
     {
         Money money = new Money();
+        UI ui = new UI();
         string goldColor = "#8D9600";
         switch (title[i])
         {
             case "Attack Damage":
-                Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.attackCurrentLevels[i]}/{Upgrade.attackMaxLevels[i]})</size>\n{Tower.attackDamage:#.00}\n$<color={goldColor}>{money.GetMoneyText(Upgrade.attackCurrentGoldCost[i, 0], Upgrade.attackCurrentGoldCost[i, 1])}</color>";
+                Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.attackCurrentLevels[i]}/{Upgrade.attackMaxLevels[i]})</size>\n{ui.GetNumberText(Tower.attackDamage, true)}\n$<color={goldColor}>{money.GetMoneyText(Upgrade.attackCurrentGoldCost[i, 0], Upgrade.attackCurrentGoldCost[i, 1])}</color>";
                 break;
 
             case "Attack Speed":
-                Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.attackCurrentLevels[i]}/{Upgrade.attackMaxLevels[i]})</size>\n{Tower.attackSpeed * 100:#.} %\n$<color={goldColor}>{money.GetMoneyText(Upgrade.attackCurrentGoldCost[i, 0], Upgrade.attackCurrentGoldCost[i, 1])}</color>";
+                Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.attackCurrentLevels[i]}/{Upgrade.attackMaxLevels[i]})</size>\n{ui.GetNumberText(Tower.attackSpeed, true)} %\n$<color={goldColor}>{money.GetMoneyText(Upgrade.attackCurrentGoldCost[i, 0], Upgrade.attackCurrentGoldCost[i, 1])}</color>";
                 break;
 
             case "Range":
-                Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.attackCurrentLevels[i]}/{Upgrade.attackMaxLevels[i]})</size>\n{Tower.range:#.00}\n$<color={goldColor}>{money.GetMoneyText(Upgrade.attackCurrentGoldCost[i, 0], Upgrade.attackCurrentGoldCost[i, 1])}</color>";
+                Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.attackCurrentLevels[i]}/{Upgrade.attackMaxLevels[i]})</size>\n{ui.GetNumberText(Tower.range, true)}\n$<color={goldColor}>{money.GetMoneyText(Upgrade.attackCurrentGoldCost[i, 0], Upgrade.attackCurrentGoldCost[i, 1])}</color>";
                 break;
 
             case "Projectile Speed":
-                Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.attackCurrentLevels[i]}/{Upgrade.attackMaxLevels[i]})</size>\n{Tower.projectileSpeed:#.00}\n$<color={goldColor}>{money.GetMoneyText(Upgrade.attackCurrentGoldCost[i, 0], Upgrade.attackCurrentGoldCost[i, 1])}</color>";
+                Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.attackCurrentLevels[i]}/{Upgrade.attackMaxLevels[i]})</size>\n{ui.GetNumberText(Tower.projectileSpeed, true)}\n$<color={goldColor}>{money.GetMoneyText(Upgrade.attackCurrentGoldCost[i, 0], Upgrade.attackCurrentGoldCost[i, 1])}</color>";
                 break;
 
             case "Critical Chance":
-                Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.attackCurrentLevels[i]}/{Upgrade.attackMaxLevels[i]})</size>\n{Tower.criticalChance} %\n$<color={goldColor}>{money.GetMoneyText(Upgrade.attackCurrentGoldCost[i, 0], Upgrade.attackCurrentGoldCost[i, 1])}</color>";
+                Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.attackCurrentLevels[i]}/{Upgrade.attackMaxLevels[i]})</size>\n{ui.GetNumberText(Tower.criticalChance, false)} %\n$<color={goldColor}>{money.GetMoneyText(Upgrade.attackCurrentGoldCost[i, 0], Upgrade.attackCurrentGoldCost[i, 1])}</color>";
                 break;
 
             case "Critical Damage":
-                Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.attackCurrentLevels[i]}/{Upgrade.attackMaxLevels[i]})</size>\n{Tower.criticalDamage} %\n$<color={goldColor}>{money.GetMoneyText(Upgrade.attackCurrentGoldCost[i, 0], Upgrade.attackCurrentGoldCost[i, 1])}</color>";
+                Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.attackCurrentLevels[i]}/{Upgrade.attackMaxLevels[i]})</size>\n{ui.GetNumberText(Tower.criticalDamage, false)} %\n$<color={goldColor}>{money.GetMoneyText(Upgrade.attackCurrentGoldCost[i, 0], Upgrade.attackCurrentGoldCost[i, 1])}</color>";
                 break;
 
             case "Multishot":
-                Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.attackCurrentLevels[i]}/{Upgrade.attackMaxLevels[i]})</size>\n{Tower.multishot}\n$<color={goldColor}>{money.GetMoneyText(Upgrade.attackCurrentGoldCost[i, 0], Upgrade.attackCurrentGoldCost[i, 1])}</color>";
+                Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.attackCurrentLevels[i]}/{Upgrade.attackMaxLevels[i]})</size>\n{ui.GetNumberText(Tower.multishot, false)}\n$<color={goldColor}>{money.GetMoneyText(Upgrade.attackCurrentGoldCost[i, 0], Upgrade.attackCurrentGoldCost[i, 1])}</color>";
                 break;
 
             case "Damage Per Kill":
-                Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.attackCurrentLevels[i]}/{Upgrade.attackMaxLevels[i]})</size>\n{Tower.damagePerKill} %\n$<color={goldColor}>{money.GetMoneyText(Upgrade.attackCurrentGoldCost[i, 0], Upgrade.attackCurrentGoldCost[i, 1])}</color>";
+                Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.attackCurrentLevels[i]}/{Upgrade.attackMaxLevels[i]})</size>\n{ui.GetNumberText(Tower.damagePerKill, false)} %\n$<color={goldColor}>{money.GetMoneyText(Upgrade.attackCurrentGoldCost[i, 0], Upgrade.attackCurrentGoldCost[i, 1])}</color>";
                 break;
 
 
             case "Health":
-                Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.defenseCurrentLevels[i]}/{Upgrade.defenseMaxLevels[i]})</size>\n{Tower.healthMax:#.00}\n$<color={goldColor}>{money.GetMoneyText(Upgrade.defenseCurrentGoldCost[i, 0], Upgrade.defenseCurrentGoldCost[i, 1])}</color>";
+                Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.defenseCurrentLevels[i]}/{Upgrade.defenseMaxLevels[i]})</size>\n{ui.GetNumberText(Tower.healthMax, true)}\n$<color={goldColor}>{money.GetMoneyText(Upgrade.defenseCurrentGoldCost[i, 0], Upgrade.defenseCurrentGoldCost[i, 1])}</color>";
                 break;
 
             case "Regeneration":
-                Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.defenseCurrentLevels[i]}/{Upgrade.defenseMaxLevels[i]})</size>\n{Tower.regeneration:#.00} hp/s\n$<color={goldColor}>{money.GetMoneyText(Upgrade.defenseCurrentGoldCost[i, 0], Upgrade.defenseCurrentGoldCost[i, 1])}</color>";
+                Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.defenseCurrentLevels[i]}/{Upgrade.defenseMaxLevels[i]})</size>\n{ui.GetNumberText(Tower.regeneration, true)} hp/s\n$<color={goldColor}>{money.GetMoneyText(Upgrade.defenseCurrentGoldCost[i, 0], Upgrade.defenseCurrentGoldCost[i, 1])}</color>";
                 break;
 
             case "Percentage Block":
-                Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.defenseCurrentLevels[i]}/{Upgrade.defenseMaxLevels[i]})</size>\n{Tower.percentageBlock:#.} %\n$<color={goldColor}>{money.GetMoneyText(Upgrade.defenseCurrentGoldCost[i, 0], Upgrade.defenseCurrentGoldCost[i, 1])}</color>";
+                Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.defenseCurrentLevels[i]}/{Upgrade.defenseMaxLevels[i]})</size>\n{ui.GetNumberText(Tower.percentageBlock, false)} %\n$<color={goldColor}>{money.GetMoneyText(Upgrade.defenseCurrentGoldCost[i, 0], Upgrade.defenseCurrentGoldCost[i, 1])}</color>";
                 break;
 
             case "Flat Block":
-                Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.defenseCurrentLevels[i]}/{Upgrade.defenseMaxLevels[i]})</size>\n{Tower.flatBlock:#.00}\n$<color={goldColor}>{money.GetMoneyText(Upgrade.defenseCurrentGoldCost[i, 0], Upgrade.defenseCurrentGoldCost[i, 1])}</color>";
+                Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.defenseCurrentLevels[i]}/{Upgrade.defenseMaxLevels[i]})</size>\n{ui.GetNumberText(Tower.flatBlock, true)}\n$<color={goldColor}>{money.GetMoneyText(Upgrade.defenseCurrentGoldCost[i, 0], Upgrade.defenseCurrentGoldCost[i, 1])}</color>";
                 break;
 
             case "Divine Shield":
-                Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.defenseCurrentLevels[i]}/{Upgrade.defenseMaxLevels[i]})</size>\n{10 - (Tower.divineShield / 2)} sec cd\n$<color={goldColor}>{money.GetMoneyText(Upgrade.defenseCurrentGoldCost[i, 0], Upgrade.defenseCurrentGoldCost[i, 1])}</color>";
+                Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.defenseCurrentLevels[i]}/{Upgrade.defenseMaxLevels[i]})</size>\n{ui.GetNumberText(10 - (Tower.divineShield / 2), false)} sec cd\n$<color={goldColor}>{money.GetMoneyText(Upgrade.defenseCurrentGoldCost[i, 0], Upgrade.defenseCurrentGoldCost[i, 1])}</color>";
                 break;
 
             case "Slow Aura":
-                Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.defenseCurrentLevels[i]}/{Upgrade.defenseMaxLevels[i]})</size>\n{Tower.slowAura:#.} %\n$<color={goldColor}>{money.GetMoneyText(Upgrade.defenseCurrentGoldCost[i, 0], Upgrade.defenseCurrentGoldCost[i, 1])}</color>";
+                Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.defenseCurrentLevels[i]}/{Upgrade.defenseMaxLevels[i]})</size>\n{ui.GetNumberText(Tower.slowAura, false)} %\n$<color={goldColor}>{money.GetMoneyText(Upgrade.defenseCurrentGoldCost[i, 0], Upgrade.defenseCurrentGoldCost[i, 1])}</color>";
                 break;
 
             case "Life steal":
-                Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.defenseCurrentLevels[i]}/{Upgrade.defenseMaxLevels[i]})</size>\n{Tower.lifeSteal:#.} %\n$<color={goldColor}>{money.GetMoneyText(Upgrade.defenseCurrentGoldCost[i, 0], Upgrade.defenseCurrentGoldCost[i, 1])}</color>";
+                Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.defenseCurrentLevels[i]}/{Upgrade.defenseMaxLevels[i]})</size>\n{ui.GetNumberText(Tower.lifeSteal, false)} %\n$<color={goldColor}>{money.GetMoneyText(Upgrade.defenseCurrentGoldCost[i, 0], Upgrade.defenseCurrentGoldCost[i, 1])}</color>";
                 break;
 
             case "Health Per Kill":
-                Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.defenseCurrentLevels[i]}/{Upgrade.defenseMaxLevels[i]})</size>\n{Tower.healthPerKill:#.} %\n$<color={goldColor}>{money.GetMoneyText(Upgrade.defenseCurrentGoldCost[i, 0], Upgrade.defenseCurrentGoldCost[i, 1])}</color>";
+                Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.defenseCurrentLevels[i]}/{Upgrade.defenseMaxLevels[i]})</size>\n{ui.GetNumberText(Tower.healthPerKill, false)} %\n$<color={goldColor}>{money.GetMoneyText(Upgrade.defenseCurrentGoldCost[i, 0], Upgrade.defenseCurrentGoldCost[i, 1])}</color>";
                 break;
 
 
             case "Gold Per Level":
-                Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.utilityCurrentLevels[i]}/{Upgrade.utilityMaxLevels[i]})</size>\n{Tower.goldPerLevel:#.00}\n$<color={goldColor}>{money.GetMoneyText(Upgrade.utilityCurrentGoldCost[i, 0], Upgrade.utilityCurrentGoldCost[i, 1])}</color>";
+                Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.utilityCurrentLevels[i]}/{Upgrade.utilityMaxLevels[i]})</size>\n{ui.GetNumberText(Tower.goldPerLevel, true)}\n$<color={goldColor}>{money.GetMoneyText(Upgrade.utilityCurrentGoldCost[i, 0], Upgrade.utilityCurrentGoldCost[i, 1])}</color>";
                 break;
 
             case "Crystals Per Level":
-                Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.utilityCurrentLevels[i]}/{Upgrade.utilityMaxLevels[i]})</size>\n{Tower.crystalsPerLevel:#.00}\n$<color={goldColor}>{money.GetMoneyText(Upgrade.utilityCurrentGoldCost[i, 0], Upgrade.utilityCurrentGoldCost[i, 1])}</color>";
+                Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.utilityCurrentLevels[i]}/{Upgrade.utilityMaxLevels[i]})</size>\n{ui.GetNumberText(Tower.crystalsPerLevel, true)}\n$<color={goldColor}>{money.GetMoneyText(Upgrade.utilityCurrentGoldCost[i, 0], Upgrade.utilityCurrentGoldCost[i, 1])}</color>";
                 break;
 
             case "Gold Value":
-                Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.utilityCurrentLevels[i]}/{Upgrade.utilityMaxLevels[i]})</size>\n{Tower.goldValue:#.} %\n$<color={goldColor}>{money.GetMoneyText(Upgrade.utilityCurrentGoldCost[i, 0], Upgrade.utilityCurrentGoldCost[i, 1])}</color>";
+                Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.utilityCurrentLevels[i]}/{Upgrade.utilityMaxLevels[i]})</size>\n{ui.GetNumberText(Tower.goldValue, false)} %\n$<color={goldColor}>{money.GetMoneyText(Upgrade.utilityCurrentGoldCost[i, 0], Upgrade.utilityCurrentGoldCost[i, 1])}</color>";
                 break;
 
             case "Crystal Value":
-                Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.utilityCurrentLevels[i]}/{Upgrade.utilityMaxLevels[i]})</size>\n{Tower.crystalValue:#.} %\n$<color={goldColor}>{money.GetMoneyText(Upgrade.utilityCurrentGoldCost[i, 0], Upgrade.utilityCurrentGoldCost[i, 1])}</color>";
+                Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.utilityCurrentLevels[i]}/{Upgrade.utilityMaxLevels[i]})</size>\n{ui.GetNumberText(Tower.crystalValue, false)} %\n$<color={goldColor}>{money.GetMoneyText(Upgrade.utilityCurrentGoldCost[i, 0], Upgrade.utilityCurrentGoldCost[i, 1])}</color>";
                 break;
 
             case "Attack Upgrade":
-                Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.utilityCurrentLevels[i]}/{Upgrade.utilityMaxLevels[i]})</size>\n{Tower.attackUpgrade:#.} %\n$<color={goldColor}>{money.GetMoneyText(Upgrade.utilityCurrentGoldCost[i, 0], Upgrade.utilityCurrentGoldCost[i, 1])}</color>";
+                Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.utilityCurrentLevels[i]}/{Upgrade.utilityMaxLevels[i]})</size>\n{ui.GetNumberText(Tower.attackUpgrade, false)} %\n$<color={goldColor}>{money.GetMoneyText(Upgrade.utilityCurrentGoldCost[i, 0], Upgrade.utilityCurrentGoldCost[i, 1])}</color>";
                 break;
 
             case "Defense Upgrade":
-                Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.utilityCurrentLevels[i]}/{Upgrade.utilityMaxLevels[i]})</size>\n{Tower.defenseUpgrade:#.} %\n$<color={goldColor}>{money.GetMoneyText(Upgrade.utilityCurrentGoldCost[i, 0], Upgrade.utilityCurrentGoldCost[i, 1])}</color>";
+                Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.utilityCurrentLevels[i]}/{Upgrade.utilityMaxLevels[i]})</size>\n{ui.GetNumberText(Tower.defenseUpgrade, false)} %\n$<color={goldColor}>{money.GetMoneyText(Upgrade.utilityCurrentGoldCost[i, 0], Upgrade.utilityCurrentGoldCost[i, 1])}</color>";
                 break;
 
             case "Utility Upgrade":
-                Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.utilityCurrentLevels[i]}/{Upgrade.utilityMaxLevels[i]})</size>\n{Tower.utilityUpgrade:#.} %\n$<color={goldColor}>{money.GetMoneyText(Upgrade.utilityCurrentGoldCost[i, 0], Upgrade.utilityCurrentGoldCost[i, 1])}</color>";
+                Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.utilityCurrentLevels[i]}/{Upgrade.utilityMaxLevels[i]})</size>\n{ui.GetNumberText(Tower.utilityUpgrade, false)} %\n$<color={goldColor}>{money.GetMoneyText(Upgrade.utilityCurrentGoldCost[i, 0], Upgrade.utilityCurrentGoldCost[i, 1])}</color>";
                 break;
 
             case "Gold Interest":
-                Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.utilityCurrentLevels[i]}/{Upgrade.utilityMaxLevels[i]})</size>\n{Tower.goldInterest:#.} %\n$<color={goldColor}>{money.GetMoneyText(Upgrade.utilityCurrentGoldCost[i, 0], Upgrade.utilityCurrentGoldCost[i, 1])}</color>";
+                Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.utilityCurrentLevels[i]}/{Upgrade.utilityMaxLevels[i]})</size>\n{ui.GetNumberText(Tower.goldInterest, false)} %\n$<color={goldColor}>{money.GetMoneyText(Upgrade.utilityCurrentGoldCost[i, 0], Upgrade.utilityCurrentGoldCost[i, 1])}</color>";
                 break;
         }
     }
