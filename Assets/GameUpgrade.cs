@@ -120,6 +120,7 @@ public class GameUpgrade : MonoBehaviour
 
     public void LevelUpUpgrade(int i, bool payForUpgrade, Upgrade.Menu menu)
     {
+        Tower tower = new Tower();
         bool affordUpgrade = true;
         if (menu == Upgrade.Menu.Attack)
         {
@@ -130,10 +131,12 @@ public class GameUpgrade : MonoBehaviour
             }
             if (affordUpgrade)
             {
+                
                 switch (i)
                 {
+                    
                     case 0:
-                        Tower.attackDamage *= 1.1f;
+                        tower.SetAttackDamage();
                         if (payForUpgrade)
                         {
                             Upgrade.attackCurrentGoldCost[i, 0] *= 1.2f;
@@ -141,7 +144,7 @@ public class GameUpgrade : MonoBehaviour
                         break;
                     
                     case 1:
-                        Tower.attackSpeed += 0.05f;
+                        tower.SetAttackSpeed();
                         if (payForUpgrade)
                         {
                             Upgrade.attackCurrentGoldCost[i, 0] *= 1.125f;
@@ -149,9 +152,7 @@ public class GameUpgrade : MonoBehaviour
                         break;
 
                     case 2:
-                        Tower.range += 0.5f;
-                        Tower tower = new Tower();
-                        tower.SetIndicators();
+                        tower.SetRange();
                         if (payForUpgrade)
                         {
                             Upgrade.attackCurrentGoldCost[i, 0] *= 1.15f;
@@ -159,7 +160,7 @@ public class GameUpgrade : MonoBehaviour
                         break;
 
                     case 3:
-                        Tower.projectileSpeed += 0.1f;
+                        tower.SetProjectileSpeed();
                         if (payForUpgrade)
                         {
                             Upgrade.attackCurrentGoldCost[i, 0] *= 1.1f;
@@ -167,7 +168,7 @@ public class GameUpgrade : MonoBehaviour
                         break;
 
                     case 4:
-                        Tower.criticalChance += 2f;
+                        tower.SetCriticalChance();
                         if (payForUpgrade)
                         {
                             Upgrade.attackCurrentGoldCost[i, 0] *= 1.1f;
@@ -175,7 +176,7 @@ public class GameUpgrade : MonoBehaviour
                         break;
 
                     case 5:
-                        Tower.criticalDamage += 6f;
+                        tower.SetCriticalDamage();
                         if (payForUpgrade)
                         {
                             Upgrade.attackCurrentGoldCost[i, 0] *= 1.1f;
@@ -183,7 +184,7 @@ public class GameUpgrade : MonoBehaviour
                         break;
 
                     case 6:
-                        Tower.multishot += 1f;
+                        tower.SetMultishot();
                         if (payForUpgrade)
                         {
                             Upgrade.attackCurrentGoldCost[i, 0] *= 25f;
@@ -191,7 +192,7 @@ public class GameUpgrade : MonoBehaviour
                         break;
 
                     case 7:
-                        Tower.damagePerKill += 1f;
+                        tower.SetDamagePerKill();
                         if (payForUpgrade)
                         {
                             Upgrade.attackCurrentGoldCost[i, 0] *= 10f;
@@ -227,11 +228,7 @@ public class GameUpgrade : MonoBehaviour
                 switch (i)
                 {
                     case 0:
-                        float healthGain = Tower.healthMax * 0.1f;
-                        Tower.healthMax += healthGain;
-                        Tower.healthCurrent += healthGain;
-                        UI ui = new UI();
-                        ui.DisplayHealthBar();
+                        tower.SetHealth();
                         if (payForUpgrade)
                         {
                             Upgrade.defenseCurrentGoldCost[i, 0] *= 1.2f;
@@ -239,7 +236,7 @@ public class GameUpgrade : MonoBehaviour
                         break;
 
                     case 1:
-                        Tower.regeneration *= 1.1f;
+                        tower.SetRegeneration();
                         if (payForUpgrade)
                         {
                             Upgrade.defenseCurrentGoldCost[i, 0] *= 1.2f;
@@ -247,7 +244,7 @@ public class GameUpgrade : MonoBehaviour
                         break;
 
                     case 2:
-                        Tower.percentageBlock += 1f;
+                        tower.SetPercentageBlock();
                         if (payForUpgrade)
                         {
                             Upgrade.defenseCurrentGoldCost[i, 0] *= 1.3f;
@@ -255,7 +252,7 @@ public class GameUpgrade : MonoBehaviour
                         break;
 
                     case 3:
-                        Tower.flatBlock += 1f + Upgrade.defenseCurrentLevels[i];
+                        tower.SetFlatBlock();
                         if (payForUpgrade)
                         {
                             Upgrade.defenseCurrentGoldCost[i, 0] *= 1.175f;
@@ -263,7 +260,7 @@ public class GameUpgrade : MonoBehaviour
                         break;
 
                     case 4:
-                        Tower.divineShield += 0.25f;
+                        tower.SetDivineShield();
                         if (payForUpgrade)
                         {
                             Upgrade.defenseCurrentGoldCost[i, 0] *= 1.1f;
@@ -271,7 +268,7 @@ public class GameUpgrade : MonoBehaviour
                         break;
 
                     case 5:
-                        Tower.slowAura += 2f;
+                        tower.SetSlowAura();
                         if (payForUpgrade)
                         {
                             Upgrade.defenseCurrentGoldCost[i, 0] *= 1.1f;
@@ -279,7 +276,7 @@ public class GameUpgrade : MonoBehaviour
                         break;
 
                     case 6:
-                        Tower.lifeSteal += 5f;
+                        tower.SetLifeSteal();
                         if (payForUpgrade)
                         {
                             Upgrade.defenseCurrentGoldCost[i, 0] *= 2f;
@@ -287,7 +284,7 @@ public class GameUpgrade : MonoBehaviour
                         break;
 
                     case 7:
-                        Tower.healthPerKill += 0.01f;
+                        tower.SetHealthPerKill();
                         if (payForUpgrade)
                         {
                             Upgrade.defenseCurrentGoldCost[i, 0] *= 25f;
@@ -323,7 +320,7 @@ public class GameUpgrade : MonoBehaviour
                 switch (i)
                 {
                     case 0:
-                        Tower.goldPerLevel += 10f + (Upgrade.utilityCurrentLevels[i] * 2f);
+                        tower.SetGoldPerLevel();
                         if (payForUpgrade)
                         {
                             Upgrade.utilityCurrentGoldCost[i, 0] *= 1.2f;
@@ -331,7 +328,7 @@ public class GameUpgrade : MonoBehaviour
                         break;
 
                     case 1:
-                        Tower.crystalsPerLevel += 1f + (Upgrade.utilityCurrentLevels[i] * 0.2f);
+                        tower.SetCrystalsPerLevel();
                         if (payForUpgrade)
                         {
                             Upgrade.utilityCurrentGoldCost[i, 0] *= 1.2f;
@@ -339,7 +336,7 @@ public class GameUpgrade : MonoBehaviour
                         break;
 
                     case 2:
-                        Tower.goldValue += 5f;
+                        tower.SetGoldValue();
                         if (payForUpgrade)
                         {
                             Upgrade.utilityCurrentGoldCost[i, 0] *= 1.2f;
@@ -347,7 +344,7 @@ public class GameUpgrade : MonoBehaviour
                         break;
 
                     case 3:
-                        Tower.crystalValue += 5f;
+                        tower.SetCrystalValue();
                         if (payForUpgrade)
                         {
                             Upgrade.utilityCurrentGoldCost[i, 0] *= 1.2f;
@@ -355,7 +352,7 @@ public class GameUpgrade : MonoBehaviour
                         break;
 
                     case 4:
-                        Tower.attackUpgrade += 2f;
+                        tower.SetAttackUpgrade();
                         if (payForUpgrade)
                         {
                             Upgrade.utilityCurrentGoldCost[i, 0] *= 1.1f;
@@ -363,7 +360,7 @@ public class GameUpgrade : MonoBehaviour
                         break;
 
                     case 5:
-                        Tower.defenseUpgrade += 2f;
+                        tower.SetDefenseUpgrade();
                         if (payForUpgrade)
                         {
                             Upgrade.utilityCurrentGoldCost[i, 0] *= 1.1f;
@@ -371,7 +368,7 @@ public class GameUpgrade : MonoBehaviour
                         break;
 
                     case 6:
-                        Tower.utilityUpgrade += 2f;
+                        tower.SetUtilityUpgrade();
                         if (payForUpgrade)
                         {
                             Upgrade.utilityCurrentGoldCost[i, 0] *= 1.1f;
@@ -379,7 +376,7 @@ public class GameUpgrade : MonoBehaviour
                         break;
 
                     case 7:
-                        Tower.goldInterest += 10f;
+                        tower.SetGoldInterest();
                         if (payForUpgrade)
                         {
                             Upgrade.utilityCurrentGoldCost[i, 0] *= 25f;
@@ -408,7 +405,7 @@ public class GameUpgrade : MonoBehaviour
     {
         List<int> indexes = new List<int>();
 
-        for (int i = 0; i < Upgrade.MENU_SIZE; i++)
+        for (int i = 0; i < Upgrade.UPGRADE_SIZE; i++)
         {
             if (Upgrade.attackUnlocked[i])
             {
@@ -426,7 +423,7 @@ public class GameUpgrade : MonoBehaviour
     {
         List<int> indexes = new List<int>();
 
-        for (int i = 0; i < Upgrade.MENU_SIZE; i++)
+        for (int i = 0; i < Upgrade.UPGRADE_SIZE; i++)
         {
             if (Upgrade.defenseUnlocked[i])
             {
@@ -444,7 +441,7 @@ public class GameUpgrade : MonoBehaviour
     {
         List<int> indexes = new List<int>();
 
-        for (int i = 0; i < Upgrade.MENU_SIZE; i++)
+        for (int i = 0; i < Upgrade.UPGRADE_SIZE; i++)
         {
             if (Upgrade.utilityUnlocked[i])
             {

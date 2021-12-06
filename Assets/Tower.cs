@@ -43,40 +43,37 @@ public class Tower : MonoBehaviour
     public void Init()
     {
         rangeIndicator = GameObject.Find("RangeIndicator");
-        SetStats();
         CreateTower();
     }
 
     public void SetStats()
     {
-        attackDamage = 10;
-        attackSpeed = 1;
-        range = 5;
-        projectileSpeed = 1;
-        criticalChance = 0;
-        criticalDamage = 200;
-        multishot = 1;
-        damagePerKill = 0;
+        SetAttackDamage();
+        SetAttackSpeed();
+        SetRange();
+        SetProjectileSpeed();
+        SetCriticalChance();
+        SetCriticalDamage();
+        SetMultishot();
+        SetDamagePerKill();
 
-        healthMax = 10;
-        healthCurrent = healthMax;
-        regeneration = 0.1f;
-        percentageBlock = 0;
-        flatBlock = 0;
-        divineShield = 0;
-        shielded = false;
-        slowAura = 0;
-        lifeSteal = 0;
-        healthPerKill = 0;
+        SetHealth();
+        SetRegeneration();
+        SetPercentageBlock();
+        SetFlatBlock();
+        SetDivineShield();
+        SetSlowAura();
+        SetLifeSteal();
+        SetHealthPerKill();
 
-        goldPerLevel = 0;
-        crystalsPerLevel = 0;
-        goldValue = 100;
-        crystalValue = 100;
-        attackUpgrade = 0;
-        defenseUpgrade = 0;
-        utilityUpgrade = 0;
-        goldInterest = 0;
+        SetGoldPerLevel();
+        SetCrystalsPerLevel();
+        SetGoldValue();
+        SetCrystalValue();
+        SetAttackUpgrade();
+        SetDefenseUpgrade();
+        SetUtilityUpgrade();
+        SetGoldInterest();
 
     }
 
@@ -103,11 +100,8 @@ public class Tower : MonoBehaviour
                 Instantiate(prefab, new Vector3(0, tower.transform.localScale.y * 2, 0), new Quaternion(0, 0, 0, 0), parent.transform);
                 returnValue = true;
             }
-            else
-            {
-                return false;
-            }
         }
+        enemy.UntargetAllEnemies();
         return returnValue;
     }
 
@@ -129,5 +123,129 @@ public class Tower : MonoBehaviour
         }
         UI ui = new UI();
         ui.DisplayHealthBar();
+    }
+
+    public void SetAttackDamage()
+    {
+        attackDamage = 10 * Mathf.Pow(1.1f, Upgrade.attackCurrentLevels[0]);
+    }
+    public void SetAttackSpeed()
+    {
+        attackSpeed = 1 + (0.05f * Upgrade.attackCurrentLevels[1]);
+    }
+
+    public void SetRange()
+    {
+        range = 5 + (0.5f * Upgrade.attackCurrentLevels[2]);
+        SetIndicators();
+    }
+
+    public void SetProjectileSpeed()
+    {
+        projectileSpeed = 1 + (0.1f * Upgrade.attackCurrentLevels[3]);
+    }
+
+    public void SetCriticalChance()
+    {
+        criticalChance = 0 + (2 * Upgrade.attackCurrentLevels[4]);
+    }
+
+    public void SetCriticalDamage()
+    {
+        criticalDamage = 200 + (6 * Upgrade.attackCurrentLevels[5]);
+    }
+
+    public void SetMultishot()
+    {
+        multishot = 1 + (1 * Upgrade.attackCurrentLevels[6]);
+    }
+
+    public void SetDamagePerKill()
+    {
+        damagePerKill = 0 + (1 * Upgrade.attackCurrentLevels[7]);
+
+    }
+    public void SetHealth()
+    {
+        healthMax = 10 * Mathf.Pow(1.1f, Upgrade.defenseCurrentLevels[0]);
+        UI ui = new UI();
+        ui.DisplayHealthBar();
+    }
+
+
+    public void SetRegeneration()
+    {
+        regeneration = 0.1f * Mathf.Pow(1.1f, Upgrade.defenseCurrentLevels[1]);
+    }
+
+    public void SetPercentageBlock()
+    {
+        percentageBlock = 0 + (1 * Upgrade.defenseCurrentLevels[2]);
+    }
+
+    public void SetFlatBlock()
+    {
+        flatBlock = 0 + (Mathf.Pow(Upgrade.defenseCurrentLevels[3]/2, 2) + (Upgrade.defenseCurrentLevels[3] / 2));
+    }
+
+    public void SetDivineShield()
+    {
+        divineShield = 0 + (0.25f * Upgrade.defenseCurrentLevels[4]);
+        shielded = false;
+    }
+
+    public void SetSlowAura()
+    {
+        slowAura = 0 + (2 * Upgrade.defenseCurrentLevels[5]);
+    }
+
+    public void SetLifeSteal()
+    {
+        lifeSteal = 0 + (5 * Upgrade.defenseCurrentLevels[6]);
+    }
+
+    public void SetHealthPerKill()
+    {
+        healthPerKill = 0 + (1 * Upgrade.defenseCurrentLevels[7]);
+    }
+
+    public void SetGoldPerLevel()
+    {
+        goldPerLevel = 0 + ((10 + (Upgrade.utilityCurrentLevels[0] * 2)) * Upgrade.utilityCurrentLevels[0]);
+    }
+
+    public void SetCrystalsPerLevel()
+    {
+        crystalsPerLevel = 0 + ((1 + (Upgrade.utilityCurrentLevels[1] * 0.2f)) * Upgrade.utilityCurrentLevels[1]);
+    }
+
+    public void SetGoldValue()
+    {
+        goldValue = 100 + (5 * Upgrade.utilityCurrentLevels[2]);
+    }
+
+    public void SetCrystalValue()
+    {
+        crystalValue = 100 + (5 * Upgrade.utilityCurrentLevels[3]);
+    }
+
+    public void SetAttackUpgrade()
+    {
+        attackUpgrade = 0 + (2 * Upgrade.utilityCurrentLevels[4]);
+    }
+
+    public void SetDefenseUpgrade()
+    {
+        defenseUpgrade = 0 + (2 * Upgrade.utilityCurrentLevels[5]);
+    }
+
+    public void SetUtilityUpgrade()
+    {
+        utilityUpgrade = 0 + (2 * Upgrade.utilityCurrentLevels[6]);
+    }
+
+    public void SetGoldInterest()
+    {
+        goldInterest = 0 + (10 * Upgrade.utilityCurrentLevels[7]);
     }
 }

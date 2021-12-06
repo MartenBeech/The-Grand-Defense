@@ -13,10 +13,10 @@ public class TowerInstance : MonoBehaviour
 
     private void Awake()
     {
-        attackCounter = 1f / Tower.attackSpeed;
+        attackCounter = 0;
         regenerationInterval = 1f / 100;
         regenerationCounter = regenerationInterval;
-        divineShieldCounter = 10 - (Tower.divineShield / 2);
+        divineShieldCounter = 0;
     }
 
     private void Update()

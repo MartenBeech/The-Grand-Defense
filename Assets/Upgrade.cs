@@ -6,56 +6,56 @@ using UnityEngine.UI;
 
 public class Upgrade : MonoBehaviour
 {
-    public const int MENU_SIZE = 8;
+    public const int UPGRADE_SIZE = 8;
 
     public enum Menu { Attack, Defense, Utility, TopSecret }
     public static Menu currentMenu = Menu.Attack;
-    public static string[] attackTitles = new string[MENU_SIZE] { "Attack Damage", "Attack Speed", "Range", "Projectile Speed", "Critical Chance", "Critical Damage", "Multishot", "Damage Per Kill" };
-    public static string[] defenseTitles = new string[MENU_SIZE] { "Health", "Regeneration", "Percentage Block", "Flat Block", "Divine Shield", "Slow Aura", "Life steal", "Health Per Kill" };
-    public static string[] utilityTitles = new string[MENU_SIZE] { "Gold Per Level", "Crystals Per Level", "Gold Value", "Crystal Value", "Attack Upgrade", "Defense Upgrade", "Utility Upgrade", "Gold Interest" };
-    public static string[] topSecretTitles = new string[MENU_SIZE] { "Start Next Wave Early", "Change Colors", "Automatic Upgrade Attack", "Automatic Upgrade Defense", "Automatic Upgrade Utility", "Speed Up Button", "Freeze Enemies", "NUKE" };
+    public static string[] attackTitles = new string[UPGRADE_SIZE] { "Attack Damage", "Attack Speed", "Range", "Projectile Speed", "Critical Chance", "Critical Damage", "Multishot", "Damage Per Kill" };
+    public static string[] defenseTitles = new string[UPGRADE_SIZE] { "Health", "Regeneration", "Percentage Block", "Flat Block", "Divine Shield", "Slow Aura", "Life steal", "Health Per Kill" };
+    public static string[] utilityTitles = new string[UPGRADE_SIZE] { "Gold Per Level", "Crystals Per Level", "Gold Value", "Crystal Value", "Attack Upgrade", "Defense Upgrade", "Utility Upgrade", "Gold Interest" };
+    public static string[] topSecretTitles = new string[UPGRADE_SIZE] { "Start Next Wave Early", "Change Colors", "Automatic Upgrade Attack", "Automatic Upgrade Defense", "Automatic Upgrade Utility", "Speed Up Button", "Freeze Enemies", "NUKE" };
 
-    public static int[] attackMaxLevels = new int[MENU_SIZE] { 999, 100, 100, 100, 50, 50, 9, 10 };
-    public static int[] defenseMaxLevels = new int[MENU_SIZE] { 999, 999, 99, 100, 19, 40, 20, 10 };
-    public static int[] utilityMaxLevels = new int[MENU_SIZE] { 100, 100, 100, 100, 50, 50, 50, 10 };
-    public static int[] topSecretMaxLevels = new int[MENU_SIZE] { 1, 1, 1, 1, 1, 1, 1, 1 };
+    public static int[] attackMaxLevels = new int[UPGRADE_SIZE] { 999, 100, 100, 100, 50, 50, 9, 10 };
+    public static int[] defenseMaxLevels = new int[UPGRADE_SIZE] { 999, 999, 99, 100, 19, 40, 20, 10 };
+    public static int[] utilityMaxLevels = new int[UPGRADE_SIZE] { 100, 100, 100, 100, 50, 50, 50, 10 };
+    public static int[] topSecretMaxLevels = new int[UPGRADE_SIZE] { 1, 1, 1, 1, 1, 1, 1, 1 };
 
-    public static int[] attackMenuLevels = new int[MENU_SIZE] { 0, 0, 0, 0, 0, 0, 0, 0 };
-    public static int[] defenseMenuLevels = new int[MENU_SIZE] { 0, 0, 0, 0, 0, 0, 0, 0 };
-    public static int[] utilityMenuLevels = new int[MENU_SIZE] { 0, 0, 0, 0, 0, 0, 0, 0 };
-    public static int[] topSecretMenuLevels = new int[MENU_SIZE] { 0, 0, 0, 0, 0, 0, 0, 0 };
+    public static int[] attackMenuLevels = new int[UPGRADE_SIZE] { 0, 0, 0, 0, 0, 0, 0, 0 };
+    public static int[] defenseMenuLevels = new int[UPGRADE_SIZE] { 0, 0, 0, 0, 0, 0, 0, 0 };
+    public static int[] utilityMenuLevels = new int[UPGRADE_SIZE] { 0, 0, 0, 0, 0, 0, 0, 0 };
+    public static int[] topSecretMenuLevels = new int[UPGRADE_SIZE] { 0, 0, 0, 0, 0, 0, 0, 0 };
 
-    public static int[] attackCurrentLevels = new int[MENU_SIZE] { 0, 0, 0, 0, 0, 0, 0, 0 };
-    public static int[] defenseCurrentLevels = new int[MENU_SIZE] { 0, 0, 0, 0, 0, 0, 0, 0 };
-    public static int[] utilityCurrentLevels = new int[MENU_SIZE] { 0, 0, 0, 0, 0, 0, 0, 0 };
-    public static int[] topSecretCurrentLevels = new int[MENU_SIZE] { 0, 0, 0, 0, 0, 0, 0, 0 };
+    public static int[] attackCurrentLevels = new int[UPGRADE_SIZE] { 0, 0, 0, 0, 0, 0, 0, 0 };
+    public static int[] defenseCurrentLevels = new int[UPGRADE_SIZE] { 0, 0, 0, 0, 0, 0, 0, 0 };
+    public static int[] utilityCurrentLevels = new int[UPGRADE_SIZE] { 0, 0, 0, 0, 0, 0, 0, 0 };
+    public static int[] topSecretCurrentLevels = new int[UPGRADE_SIZE] { 0, 0, 0, 0, 0, 0, 0, 0 };
 
-    public static float[,] attackDefaultGoldCost = new float[MENU_SIZE, 2] { { 1, 1 }, { 1, 1 }, { 1, 2 }, { 1, 2 }, { 5, 3 }, { 5, 3 }, { 1, 10 }, { 1, 50 } };
-    public static float[,] defenseDefaultGoldCost = new float[MENU_SIZE, 2] { { 1, 1 }, { 1, 1 }, { 1, 2 }, { 1, 2 }, { 5, 3 }, { 5, 3 }, { 1, 10 }, { 1, 50 } };
-    public static float[,] utilityDefaultGoldCost = new float[MENU_SIZE, 2] { { 2, 1 }, { 2, 1 }, { 1, 3 }, { 1, 3 }, { 1, 7 }, { 1, 7 }, { 1, 10 }, { 1, 50 } };
-    public static float[,] topSecretDefaultGoldCost = new float[MENU_SIZE, 2] { { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 } };
+    public static float[,] attackDefaultGoldCost = new float[UPGRADE_SIZE, 2] { { 1, 1 }, { 1, 1 }, { 1, 2 }, { 1, 2 }, { 5, 3 }, { 5, 3 }, { 1, 10 }, { 1, 50 } };
+    public static float[,] defenseDefaultGoldCost = new float[UPGRADE_SIZE, 2] { { 1, 1 }, { 1, 1 }, { 1, 2 }, { 1, 2 }, { 5, 3 }, { 5, 3 }, { 1, 10 }, { 1, 50 } };
+    public static float[,] utilityDefaultGoldCost = new float[UPGRADE_SIZE, 2] { { 2, 1 }, { 2, 1 }, { 1, 3 }, { 1, 3 }, { 1, 7 }, { 1, 7 }, { 1, 10 }, { 1, 50 } };
+    public static float[,] topSecretDefaultGoldCost = new float[UPGRADE_SIZE, 2] { { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 } };
 
-    public static float[,] attackCurrentGoldCost = new float[MENU_SIZE, 2] { { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 } };
-    public static float[,] defenseCurrentGoldCost = new float[MENU_SIZE, 2] { { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 } };
-    public static float[,] utilityCurrentGoldCost = new float[MENU_SIZE, 2] { { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 } };
-    public static float[,] topSecretCurrentGoldCost = new float[MENU_SIZE, 2] { { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 } };
+    public static float[,] attackCurrentGoldCost = new float[UPGRADE_SIZE, 2] { { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 } };
+    public static float[,] defenseCurrentGoldCost = new float[UPGRADE_SIZE, 2] { { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 } };
+    public static float[,] utilityCurrentGoldCost = new float[UPGRADE_SIZE, 2] { { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 } };
+    public static float[,] topSecretCurrentGoldCost = new float[UPGRADE_SIZE, 2] { { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 } };
 
-    public static float[,] attackCurrentCrystalCost = new float[MENU_SIZE, 2] { { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 } };
-    public static float[,] defenseCurrentCrystalCost = new float[MENU_SIZE, 2] { { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 } };
-    public static float[,] utilityCurrentCrystalCost = new float[MENU_SIZE, 2] { { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 } };
-    public static float[,] topSecretCurrentCrystalCost = new float[MENU_SIZE, 2] { { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 } };
+    public static float[,] attackCurrentCrystalCost = new float[UPGRADE_SIZE, 2] { { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 } };
+    public static float[,] defenseCurrentCrystalCost = new float[UPGRADE_SIZE, 2] { { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 } };
+    public static float[,] utilityCurrentCrystalCost = new float[UPGRADE_SIZE, 2] { { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 } };
+    public static float[,] topSecretCurrentCrystalCost = new float[UPGRADE_SIZE, 2] { { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 } };
 
-    public static GameObject[] upgrades = new GameObject[MENU_SIZE];
-    public static GameObject[] menuUpgrades = new GameObject[MENU_SIZE];
+    public static GameObject[] upgrades = new GameObject[UPGRADE_SIZE];
+    public static GameObject[] menuUpgrades = new GameObject[UPGRADE_SIZE];
 
-    public static bool[] attackUnlocked = new bool[MENU_SIZE];
-    public static bool[] defenseUnlocked = new bool[MENU_SIZE];
-    public static bool[] utilityUnlocked = new bool[MENU_SIZE];
-    public static bool[] topSecretUnlocked = new bool[MENU_SIZE];
+    public static bool[] attackUnlocked = new bool[UPGRADE_SIZE];
+    public static bool[] defenseUnlocked = new bool[UPGRADE_SIZE];
+    public static bool[] utilityUnlocked = new bool[UPGRADE_SIZE];
+    public static bool[] topSecretUnlocked = new bool[UPGRADE_SIZE];
 
     public void Init()
     {
-        for (int i = 0; i < MENU_SIZE; i++)
+        for (int i = 0; i < UPGRADE_SIZE; i++)
         {
             upgrades[i] = GameObject.Find($"Upgrade{i}");
             menuUpgrades[i] = GameObject.Find($"MenuUpgrade{i}");
@@ -66,7 +66,7 @@ public class Upgrade : MonoBehaviour
         UnlockUpgrade(defenseUnlocked, 0);
         UnlockUpgrade(defenseUnlocked, 1);
 
-        for (int i = 0; i < MENU_SIZE; i++)
+        for (int i = 0; i < UPGRADE_SIZE; i++)
         {
             UnlockUpgrade(attackUnlocked, i);
             UnlockUpgrade(defenseUnlocked, i);
@@ -74,7 +74,7 @@ public class Upgrade : MonoBehaviour
             UnlockUpgrade(topSecretUnlocked, i);
         }
 
-        for (int i = 0; i < MENU_SIZE; i++)
+        for (int i = 0; i < UPGRADE_SIZE; i++)
         {
             for (int j = 0; j < 2; j++)
             {
@@ -124,7 +124,7 @@ public class Upgrade : MonoBehaviour
     {
         GameUpgrade gameUpgrade = new GameUpgrade();
         MenuUpgrade menuUpgrade = new MenuUpgrade();
-        for (int i = 0; i < MENU_SIZE; i++)
+        for (int i = 0; i < UPGRADE_SIZE; i++)
         {
             if (unlocked[i])
             {
@@ -144,13 +144,33 @@ public class Upgrade : MonoBehaviour
 
     public void ResetGoldCost()
     {
-        for (int i = 0; i < MENU_SIZE; i++)
+        for (int i = 0; i < UPGRADE_SIZE; i++)
         {
             for (int j = 0; j < 2; j++)
             {
                 attackCurrentGoldCost[i, j] = attackDefaultGoldCost[i, j];
                 defenseCurrentGoldCost[i, j] = defenseDefaultGoldCost[i, j];
                 utilityCurrentGoldCost[i, j] = utilityDefaultGoldCost[i, j];
+            }
+        }
+    }
+
+    public void ResetLevels()
+    {
+        GameUpgrade gameUpgrade = new GameUpgrade();
+        for (int i = 0; i < UPGRADE_SIZE; i++)
+        {
+            for (int j = 0; j < attackMenuLevels[i]; j++)
+            {
+                gameUpgrade.LevelUpUpgrade(i, false, Menu.Attack);
+            }
+            for (int j = 0; j < defenseMenuLevels[i]; j++)
+            {
+                gameUpgrade.LevelUpUpgrade(i, false, Menu.Defense);
+            }
+            for (int j = 0; j < utilityMenuLevels[i]; j++)
+            {
+                gameUpgrade.LevelUpUpgrade(i, false, Menu.Utility);
             }
         }
     }

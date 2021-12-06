@@ -133,7 +133,6 @@ public class MenuUpgrade : MonoBehaviour
                 switch (i)
                 {
                     case 0:
-                        Tower.attackDamage *= 1.1f;
                         if (payForUpgrade)
                         {
                             Upgrade.attackCurrentCrystalCost[i, 0] *= 1.2f;
@@ -141,7 +140,6 @@ public class MenuUpgrade : MonoBehaviour
                         break;
 
                     case 1:
-                        Tower.attackSpeed += 0.05f;
                         if (payForUpgrade)
                         {
                             Upgrade.attackCurrentCrystalCost[i, 0] *= 1.125f;
@@ -149,9 +147,6 @@ public class MenuUpgrade : MonoBehaviour
                         break;
 
                     case 2:
-                        Tower.range += 0.5f;
-                        Tower tower = new Tower();
-                        tower.SetIndicators();
                         if (payForUpgrade)
                         {
                             Upgrade.attackCurrentCrystalCost[i, 0] *= 1.15f;
@@ -159,7 +154,6 @@ public class MenuUpgrade : MonoBehaviour
                         break;
 
                     case 3:
-                        Tower.projectileSpeed += 0.1f;
                         if (payForUpgrade)
                         {
                             Upgrade.attackCurrentCrystalCost[i, 0] *= 1.1f;
@@ -167,7 +161,6 @@ public class MenuUpgrade : MonoBehaviour
                         break;
 
                     case 4:
-                        Tower.criticalChance += 2f;
                         if (payForUpgrade)
                         {
                             Upgrade.attackCurrentCrystalCost[i, 0] *= 1.1f;
@@ -175,7 +168,6 @@ public class MenuUpgrade : MonoBehaviour
                         break;
 
                     case 5:
-                        Tower.criticalDamage += 6f;
                         if (payForUpgrade)
                         {
                             Upgrade.attackCurrentCrystalCost[i, 0] *= 1.1f;
@@ -183,7 +175,6 @@ public class MenuUpgrade : MonoBehaviour
                         break;
 
                     case 6:
-                        Tower.multishot += 1f;
                         if (payForUpgrade)
                         {
                             Upgrade.attackCurrentCrystalCost[i, 0] *= 25f;
@@ -191,7 +182,6 @@ public class MenuUpgrade : MonoBehaviour
                         break;
 
                     case 7:
-                        Tower.damagePerKill += 1f;
                         if (payForUpgrade)
                         {
                             Upgrade.attackCurrentCrystalCost[i, 0] *= 10f;
@@ -227,11 +217,6 @@ public class MenuUpgrade : MonoBehaviour
                 switch (i)
                 {
                     case 0:
-                        float healthGain = Tower.healthMax * 0.1f;
-                        Tower.healthMax += healthGain;
-                        Tower.healthCurrent += healthGain;
-                        UI ui = new UI();
-                        ui.DisplayHealthBar();
                         if (payForUpgrade)
                         {
                             Upgrade.defenseCurrentCrystalCost[i, 0] *= 1.2f;
@@ -239,7 +224,6 @@ public class MenuUpgrade : MonoBehaviour
                         break;
 
                     case 1:
-                        Tower.regeneration *= 1.1f;
                         if (payForUpgrade)
                         {
                             Upgrade.defenseCurrentCrystalCost[i, 0] *= 1.2f;
@@ -247,7 +231,6 @@ public class MenuUpgrade : MonoBehaviour
                         break;
 
                     case 2:
-                        Tower.percentageBlock += 1f;
                         if (payForUpgrade)
                         {
                             Upgrade.defenseCurrentCrystalCost[i, 0] *= 1.3f;
@@ -255,7 +238,6 @@ public class MenuUpgrade : MonoBehaviour
                         break;
 
                     case 3:
-                        Tower.flatBlock += 1f + Upgrade.defenseMenuLevels[i];
                         if (payForUpgrade)
                         {
                             Upgrade.defenseCurrentCrystalCost[i, 0] *= 1.175f;
@@ -263,7 +245,6 @@ public class MenuUpgrade : MonoBehaviour
                         break;
 
                     case 4:
-                        Tower.divineShield += 0.25f;
                         if (payForUpgrade)
                         {
                             Upgrade.defenseCurrentCrystalCost[i, 0] *= 1.1f;
@@ -271,7 +252,6 @@ public class MenuUpgrade : MonoBehaviour
                         break;
 
                     case 5:
-                        Tower.slowAura += 2f;
                         if (payForUpgrade)
                         {
                             Upgrade.defenseCurrentCrystalCost[i, 0] *= 1.1f;
@@ -279,7 +259,6 @@ public class MenuUpgrade : MonoBehaviour
                         break;
 
                     case 6:
-                        Tower.lifeSteal += 5f;
                         if (payForUpgrade)
                         {
                             Upgrade.defenseCurrentCrystalCost[i, 0] *= 2f;
@@ -287,7 +266,6 @@ public class MenuUpgrade : MonoBehaviour
                         break;
 
                     case 7:
-                        Tower.healthPerKill += 0.01f;
                         if (payForUpgrade)
                         {
                             Upgrade.defenseCurrentCrystalCost[i, 0] *= 25f;
@@ -323,7 +301,6 @@ public class MenuUpgrade : MonoBehaviour
                 switch (i)
                 {
                     case 0:
-                        Tower.goldPerLevel += 10f + (Upgrade.utilityMenuLevels[i] * 2f);
                         if (payForUpgrade)
                         {
                             Upgrade.utilityCurrentCrystalCost[i, 0] *= 1.2f;
@@ -331,7 +308,6 @@ public class MenuUpgrade : MonoBehaviour
                         break;
 
                     case 1:
-                        Tower.crystalsPerLevel += 1f + (Upgrade.utilityMenuLevels[i] * 0.2f);
                         if (payForUpgrade)
                         {
                             Upgrade.utilityCurrentCrystalCost[i, 0] *= 1.2f;
@@ -339,7 +315,6 @@ public class MenuUpgrade : MonoBehaviour
                         break;
 
                     case 2:
-                        Tower.goldValue += 5f;
                         if (payForUpgrade)
                         {
                             Upgrade.utilityCurrentCrystalCost[i, 0] *= 1.2f;
@@ -347,7 +322,6 @@ public class MenuUpgrade : MonoBehaviour
                         break;
 
                     case 3:
-                        Tower.crystalValue += 5f;
                         if (payForUpgrade)
                         {
                             Upgrade.utilityCurrentCrystalCost[i, 0] *= 1.2f;
@@ -355,7 +329,6 @@ public class MenuUpgrade : MonoBehaviour
                         break;
 
                     case 4:
-                        Tower.attackUpgrade += 2f;
                         if (payForUpgrade)
                         {
                             Upgrade.utilityCurrentCrystalCost[i, 0] *= 1.1f;
@@ -363,7 +336,6 @@ public class MenuUpgrade : MonoBehaviour
                         break;
 
                     case 5:
-                        Tower.defenseUpgrade += 2f;
                         if (payForUpgrade)
                         {
                             Upgrade.utilityCurrentCrystalCost[i, 0] *= 1.1f;
@@ -371,7 +343,6 @@ public class MenuUpgrade : MonoBehaviour
                         break;
 
                     case 6:
-                        Tower.utilityUpgrade += 2f;
                         if (payForUpgrade)
                         {
                             Upgrade.utilityCurrentCrystalCost[i, 0] *= 1.1f;
@@ -379,7 +350,6 @@ public class MenuUpgrade : MonoBehaviour
                         break;
 
                     case 7:
-                        Tower.goldInterest += 10f;
                         if (payForUpgrade)
                         {
                             Upgrade.utilityCurrentCrystalCost[i, 0] *= 25f;

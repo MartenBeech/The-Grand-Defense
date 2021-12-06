@@ -29,12 +29,11 @@ public class MainMenu : MonoBehaviour
         gameLevel.StartNextLevel();
         Upgrade upgrade = new Upgrade();
         upgrade.OpenMenu(Upgrade.currentMenu.ToString());
-        Tower tower = new Tower();
-        tower.SetIndicators();
-        UI ui = new UI();
-        ui.DisplayHealthBar();
-
+        upgrade.ResetLevels();
         upgrade.ResetGoldCost();
+        Tower tower = new Tower();
+        tower.SetStats();
+        Tower.healthCurrent = Tower.healthMax;
     }
 
     public void EndGame()

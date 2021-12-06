@@ -69,4 +69,16 @@ public class Enemy : MonoBehaviour
         }
         return target;
     }
+
+    public void UntargetAllEnemies()
+    {
+        Transform parent = GameObject.Find("Enemies").transform;
+        int parentCount = parent.childCount;
+
+        for (int i = 0; i < parentCount; ++i)
+        {
+            Transform child = parent.GetChild(i);
+            child.gameObject.GetComponent<EnemyInstance>().targeted = false;
+        }
+    }
 }
