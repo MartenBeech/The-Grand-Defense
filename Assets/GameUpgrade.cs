@@ -18,7 +18,7 @@ public class GameUpgrade : MonoBehaviour
                 break;
 
             case "Attack Speed":
-                Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.attackCurrentLevels[i]}/{Upgrade.attackMaxLevels[i]})</size>\n{ui.GetNumberText(Tower.attackSpeed, true)} %\n$<color={goldColor}>{money.GetMoneyText(Upgrade.attackCurrentGoldCost[i, 0], Upgrade.attackCurrentGoldCost[i, 1])}</color>";
+                Upgrade.upgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.attackCurrentLevels[i]}/{Upgrade.attackMaxLevels[i]})</size>\n{ui.GetNumberText(Tower.attackSpeed * 100, false)} %\n$<color={goldColor}>{money.GetMoneyText(Upgrade.attackCurrentGoldCost[i, 0], Upgrade.attackCurrentGoldCost[i, 1])}</color>";
                 break;
 
             case "Range":
@@ -131,10 +131,18 @@ public class GameUpgrade : MonoBehaviour
             }
             if (affordUpgrade)
             {
-                
+                if (Upgrade.attackCurrentGoldCost[i, 0] >= 10)
+                {
+                    Upgrade.attackCurrentGoldCost[i, 0] /= 10;
+                    Upgrade.attackCurrentGoldCost[i, 1] += 1;
+                }
+                Upgrade.attackCurrentLevels[i] += 1;
+                if (Upgrade.attackCurrentLevels[i] == Upgrade.attackMaxLevels[i])
+                {
+                    Upgrade.upgrades[0].GetComponent<Button>().enabled = false;
+                }
                 switch (i)
                 {
-                    
                     case 0:
                         tower.SetAttackDamage();
                         if (payForUpgrade)
@@ -198,16 +206,6 @@ public class GameUpgrade : MonoBehaviour
                             Upgrade.attackCurrentGoldCost[i, 0] *= 10f;
                         }
                         break;
-                }
-                if (Upgrade.attackCurrentGoldCost[i, 0] >= 10)
-                {
-                    Upgrade.attackCurrentGoldCost[i, 0] /= 10;
-                    Upgrade.attackCurrentGoldCost[i, 1] += 1;
-                }
-                Upgrade.attackCurrentLevels[i] += 1;
-                if (Upgrade.attackCurrentLevels[i] == Upgrade.attackMaxLevels[i])
-                {
-                    Upgrade.upgrades[0].GetComponent<Button>().enabled = false;
                 }
                 if (menu == Upgrade.currentMenu)
                 {

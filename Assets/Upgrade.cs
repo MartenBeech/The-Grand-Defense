@@ -66,26 +66,26 @@ public class Upgrade : MonoBehaviour
         UnlockUpgrade(defenseUnlocked, 0);
         UnlockUpgrade(defenseUnlocked, 1);
 
-        for (int i = 0; i < UPGRADE_SIZE; i++)
-        {
-            UnlockUpgrade(attackUnlocked, i);
-            UnlockUpgrade(defenseUnlocked, i);
-            UnlockUpgrade(utilityUnlocked, i);
-            UnlockUpgrade(topSecretUnlocked, i);
-        }
+        //for (int i = 0; i < UPGRADE_SIZE; i++)
+        //{
+        //    UnlockUpgrade(attackUnlocked, i);
+        //    UnlockUpgrade(defenseUnlocked, i);
+        //    UnlockUpgrade(utilityUnlocked, i);
+        //    UnlockUpgrade(topSecretUnlocked, i);
+        //}
 
-        for (int i = 0; i < UPGRADE_SIZE; i++)
-        {
-            for (int j = 0; j < 2; j++)
-            {
-                attackCurrentCrystalCost[i, j] = attackDefaultGoldCost[i, j];
-                defenseCurrentCrystalCost[i, j] = defenseDefaultGoldCost[i, j];
-                utilityCurrentCrystalCost[i, j] = utilityDefaultGoldCost[i, j];
-            }
-        }
+        //for (int i = 0; i < UPGRADE_SIZE; i++)
+        //{
+        //    for (int j = 0; j < 2; j++)
+        //    {
+        //        attackCurrentCrystalCost[i, j] = attackDefaultGoldCost[i, j];
+        //        defenseCurrentCrystalCost[i, j] = defenseDefaultGoldCost[i, j];
+        //        utilityCurrentCrystalCost[i, j] = utilityDefaultGoldCost[i, j];
+        //    }
+        //}
 
-        OpenMenu("Attack");
         ResetGoldCost();
+        OpenMenu("Attack");
     }
 
     public void UnlockUpgrade(bool[] unlocked, int i)
@@ -138,6 +138,7 @@ public class Upgrade : MonoBehaviour
                 upgrades[i].GetComponent<Image>().enabled = false;
                 upgrades[i].GetComponent<Button>().enabled = false;
                 upgrades[i].GetComponentInChildren<Text>().text = "";
+                menuUpgrade.DisplayUnlockedText(title, i);
             }
         }
     }
@@ -160,14 +161,17 @@ public class Upgrade : MonoBehaviour
         GameUpgrade gameUpgrade = new GameUpgrade();
         for (int i = 0; i < UPGRADE_SIZE; i++)
         {
+            attackCurrentLevels[i] = 0;
             for (int j = 0; j < attackMenuLevels[i]; j++)
             {
                 gameUpgrade.LevelUpUpgrade(i, false, Menu.Attack);
             }
+            defenseCurrentLevels[i] = 0;
             for (int j = 0; j < defenseMenuLevels[i]; j++)
             {
                 gameUpgrade.LevelUpUpgrade(i, false, Menu.Defense);
             }
+            utilityCurrentLevels[i] = 0;
             for (int j = 0; j < utilityMenuLevels[i]; j++)
             {
                 gameUpgrade.LevelUpUpgrade(i, false, Menu.Utility);

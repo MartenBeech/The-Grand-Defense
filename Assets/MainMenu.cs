@@ -28,9 +28,9 @@ public class MainMenu : MonoBehaviour
         GameLevel gameLevel = new GameLevel();
         gameLevel.StartNextLevel();
         Upgrade upgrade = new Upgrade();
-        upgrade.OpenMenu(Upgrade.currentMenu.ToString());
         upgrade.ResetLevels();
         upgrade.ResetGoldCost();
+        upgrade.OpenMenu(Upgrade.currentMenu.ToString());
         Tower tower = new Tower();
         tower.SetStats();
         Tower.healthCurrent = Tower.healthMax;
@@ -43,5 +43,11 @@ public class MainMenu : MonoBehaviour
         GameLevel.inProgress = false;
         day++;
         startBtn.GetComponentInChildren<Text>().text = $"Start Day {day}";
+        Upgrade upgrade = new Upgrade();
+        upgrade.ResetLevels();
+        upgrade.ResetGoldCost();
+        Tower tower = new Tower();
+        tower.SetStats();
+        upgrade.OpenMenu(Upgrade.currentMenu.ToString());
     }
 }

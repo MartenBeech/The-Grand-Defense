@@ -6,11 +6,11 @@ using UnityEngine.UI;
 
 public class MenuUpgrade : MonoBehaviour
 {
+    string goldColor = "#8D9600";
     public void DisplayUpgradeText(string[] title, int i)
     {
         Money money = new Money();
         UI ui = new UI();
-        string goldColor = "#8D9600";
         switch (title[i])
         {
             case "Attack Damage":
@@ -18,7 +18,7 @@ public class MenuUpgrade : MonoBehaviour
                 break;
 
             case "Attack Speed":
-                Upgrade.menuUpgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.attackMenuLevels[i]}/{Upgrade.attackMaxLevels[i]})</size>\n{ui.GetNumberText(Tower.attackSpeed, true)} %\n€<color={goldColor}>{money.GetMoneyText(Upgrade.attackCurrentCrystalCost[i, 0], Upgrade.attackCurrentCrystalCost[i, 1])}</color>";
+                Upgrade.menuUpgrades[i].GetComponentInChildren<Text>().text = $"{title[i]} <size=10>({Upgrade.attackMenuLevels[i]}/{Upgrade.attackMaxLevels[i]})</size>\n{ui.GetNumberText(Tower.attackSpeed * 100, false)} %\n€<color={goldColor}>{money.GetMoneyText(Upgrade.attackCurrentCrystalCost[i, 0], Upgrade.attackCurrentCrystalCost[i, 1])}</color>";
                 break;
 
             case "Range":
@@ -113,9 +113,63 @@ public class MenuUpgrade : MonoBehaviour
         }
     }
 
+    public void DisplayUnlockedText(string[] title, int i)
+    {
+        Money money = new Money();
+        Upgrade.menuUpgrades[i].GetComponentInChildren<Text>().text = $"{title[i]}\nUnlock for €<color={goldColor}>{money.GetMoneyText(Upgrade.utilityCurrentCrystalCost[i, 0], Upgrade.utilityCurrentCrystalCost[i, 1] - 2)}</color>";
+    }
+
     public void ClickUpgrade(int i)
     {
-        LevelUpUpgrade(i, true, Upgrade.currentMenu);
+        if ((Upgrade.currentMenu == Upgrade.Menu.Attack && !Upgrade.attackUnlocked[i]) ||
+            (Upgrade.currentMenu == Upgrade.Menu.Defense && !Upgrade.defenseUnlocked[i]) ||
+            (Upgrade.currentMenu == Upgrade.Menu.Utility && !Upgrade.utilityUnlocked[i]) ||
+            (Upgrade.currentMenu == Upgrade.Menu.TopSecret && !Upgrade.topSecretUnlocked[i]))
+        {
+            BuyUnlockUpgrade(i);
+        }
+        else
+        {
+            LevelUpUpgrade(i, true, Upgrade.currentMenu);
+        }
+    }
+
+    public void BuyUnlockUpgrade(int i)
+    {
+        Money money = new Money();
+        Upgrade upgrade = new Upgrade();
+
+        if (Upgrade.currentMenu == Upgrade.Menu.Attack)
+        {
+            if (money.SpendGold(new float[] { Upgrade.attackCurrentCrystalCost[i, 0], Upgrade.attackCurrentCrystalCost[i, 1] - 2 }))
+            {
+                upgrade.UnlockUpgrade(Upgrade.attackUnlocked, i);
+            }
+        }
+
+        else if (Upgrade.currentMenu == Upgrade.Menu.Defense)
+        {
+            if (money.SpendGold(new float[] { Upgrade.defenseCurrentCrystalCost[i, 0], Upgrade.defenseCurrentCrystalCost[i, 1] - 2 }))
+            {
+                upgrade.UnlockUpgrade(Upgrade.defenseUnlocked, i);
+            }
+        }
+
+        else if (Upgrade.currentMenu == Upgrade.Menu.Utility)
+        {
+            if (money.SpendGold(new float[] { Upgrade.utilityCurrentCrystalCost[i, 0], Upgrade.utilityCurrentCrystalCost[i, 1] - 2 }))
+            {
+                upgrade.UnlockUpgrade(Upgrade.utilityUnlocked, i);
+            }
+        }
+
+        else if (Upgrade.currentMenu == Upgrade.Menu.TopSecret)
+        {
+            if (money.SpendGold(new float[] { Upgrade.topSecretCurrentCrystalCost[i, 0], Upgrade.topSecretCurrentCrystalCost[i, 1] - 2 }))
+            {
+                upgrade.UnlockUpgrade(Upgrade.topSecretUnlocked, i);
+            }
+        }
     }
 
     public void LevelUpUpgrade(int i, bool payForUpgrade, Upgrade.Menu menu)
